@@ -6,7 +6,7 @@ import NftListCard from 'components/NftListCard'
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient()
 
-function App() {
+function AllNFTs() {
   return (
     <QueryClientProvider client={queryClient}>
       <Tokens />
@@ -15,7 +15,7 @@ function App() {
   )
 }
 
-export default App
+export default AllNFTs
 
 function useGetTokens() {
   return useQuery('AllTokens', async () => {
