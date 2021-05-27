@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { UriResolver } from 'components/UriResolver'
+import { UriResolver, GetUriProtocol } from 'components/UriResolver'
 import { getMetaData } from 'components/GetMetaData'
 import { AddressFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
@@ -15,6 +15,13 @@ const NftListCard = props => {
       return
     }
     const getTokenMetaData = async () => {
+
+      if (GetUriProtocol(token.tokenURI) === "http") {
+        setTokenName('Blocked From Accessing Insecure HTTP NFT Content')
+        setTokenImage('Blocked From Accessing Insecure HTTP NFT Content')
+        return
+      }
+
       const tokenMetaData = await getMetaData(UriResolver(token.tokenURI))
 
       if (!tokenMetaData.name || !tokenMetaData.image) {
