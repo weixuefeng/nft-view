@@ -4,7 +4,7 @@ import { getMetaData } from 'components/GetMetaData'
 import { AddressFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
 
-const EXPLORER_BASE_URL = 'http://e.testnet.diynova.com/'
+const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 
 const NftListCard = props => {
   const token = props.token

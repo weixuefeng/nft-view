@@ -6,15 +6,11 @@
     UriResolver(tokenURI, baseURI)
 */
 
-let IPFS_GATEWAY_URL = 'https://files.cloud.diynova.com/ipfs/'
+let IPFS_GATEWAY_URL = process.env.REACT_APP_IPFS_GATEWAY_URL
 
 export function UriResolver(uri = '', baseUri = '') {
   // `uri` is the uri to be resolved
   // `baseUri` is the addtional baseUri provided, like a contract has a baseUri, can be empty.
-
-  if (IPFS_GATEWAY_URL === null || IPFS_GATEWAY_URL === '') {
-    IPFS_GATEWAY_URL = 'https://files.cloud.diynova.com/ipfs/'
-  }
 
   /* Set gateway base urls
     Default URI gateway
@@ -23,7 +19,7 @@ export function UriResolver(uri = '', baseUri = '') {
   */
   let DEFAULT_GATEWAY_BASE_URL = IPFS_GATEWAY_URL
   let IPFS_GATEWAY_BASE_URL = IPFS_GATEWAY_URL
-  let AR_GATEWAY_BASE_URL = 'https://arweave.net/'
+  let AR_GATEWAY_BASE_URL = process.env.REACT_APP_AR_GATEWAY_URL
 
   // console.log(GetUriProtocol(uri))
   switch (GetUriProtocol(uri)) {

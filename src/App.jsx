@@ -3,7 +3,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 import { request, gql } from 'graphql-request'
 import NftListCard from 'components/NftListCard'
 
-const endpoint = 'https://graph.newton.bio/subgraphs/name/testnet/nrc7v1'
+const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient()
 
 function App() {
