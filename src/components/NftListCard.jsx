@@ -3,8 +3,7 @@ import { UriResolver } from 'components/UriResolver'
 import { getMetaData } from 'components/GetMetaData'
 import { AddressFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
-
-const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
+import { Link } from 'react-router-dom'
 
 const NftListCard = props => {
   const token = props.token
@@ -32,40 +31,40 @@ const NftListCard = props => {
 
   return (
     <li className="item" key={token.id}>
-      <header>
-        <div className="collection">
-          <div className="logo">{token.contract.symbol}</div>
-          <div className="info">
-            <div className="id">
-              {token.contract.name} <span>{token.tokenID}</span>
-            </div>
-            <div className="addr">
-              <span alt="{token.contract.id}">
-                <a href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id}>{AddressFormat(token.contract.id)}</a>
-              </span>
+      <Link to={'/view/' + token.contract.id + '/' + token.tokenID}>
+        <header>
+          <div className="collection">
+            <div className="logo">{token.contract.symbol}</div>
+            <div className="info">
+              <div className="id">
+                {token.contract.name} <span>{token.tokenID}</span>
+              </div>
+              <div className="addr">
+                <span alt="{token.contract.id}">{AddressFormat(token.contract.id)}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main>
-        <div className="cover">
-          <div className="perfect_square">{tokenImage}</div>
-        </div>
-      </main>
+        <main>
+          <div className="cover">
+            <div className="perfect_square">{tokenImage}</div>
+          </div>
+        </main>
 
-      <div className="profile">
-        <h3>{tokenName}</h3>
-        <dl>
-          <dd>
-            <span className="font-mono">
-              <p>Creator: {AddressFormat(token.minter)}</p>
-              <p>{DateTime(token.mintTime * 1000)}</p>
-              <p>Owner: {AddressFormat(token.owner.id)}</p>
-            </span>
-          </dd>
-        </dl>
-      </div>
+        <div className="profile">
+          <h3>{tokenName}</h3>
+          <dl>
+            <dd>
+              <span className="font-mono">
+                <p>Creator: {AddressFormat(token.minter)}</p>
+                <p>{DateTime(token.mintTime * 1000)}</p>
+                <p>Owner: {AddressFormat(token.owner.id)}</p>
+              </span>
+            </dd>
+          </dl>
+        </div>
+      </Link>
     </li>
   )
 }
