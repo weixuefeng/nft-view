@@ -55,7 +55,7 @@ function Token() {
   let { contract, id } = useParams()
   contract = contract === null ? '' : contract
   id = id === null ? '' : id
-  const lookTokenID = contract.toLowerCase() + '_' + id
+  const lookTokenID = contract.toLowerCase() + '-' + id
 
   const { status, data, error, isFetching } = useGetSingle(lookTokenID)
 

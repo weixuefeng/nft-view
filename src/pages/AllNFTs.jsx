@@ -60,7 +60,7 @@ function Tokens() {
           <>
             <ul className="list nft_card_list">
               {data.map((token, index) => (
-                <NftListCard token={token} key={token.id + '_' + index} />
+                <NftListCard token={token} key={token.id + '-' + index} />
               ))}
             </ul>
             {isFetching ? 'Background Updating...' : ''}
