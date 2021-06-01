@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AllNFTs from 'pages/AllNFTs'
 import ViewNFT from 'pages/ViewNFT'
+import Home from 'pages/home'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <ViewNFT />
         </Route>
         <Route exact path="/">
-          <AllNFTs />
+          <Home />
         </Route>
         <Route>
           <p>404</p>
