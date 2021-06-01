@@ -15,8 +15,7 @@ const NftListCard = props => {
       return
     }
     const getTokenMetaData = async () => {
-
-      if (GetUriProtocol(token.tokenURI) === "http") {
+      if (GetUriProtocol(token.tokenURI) === 'http') {
         setTokenName('Blocked From Accessing Insecure HTTP NFT Content')
         setTokenImage('Blocked From Accessing Insecure HTTP NFT Content')
         return

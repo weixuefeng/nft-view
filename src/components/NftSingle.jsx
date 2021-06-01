@@ -17,10 +17,9 @@ const NftSingle = props => {
     if (!token) {
       return
     }
-    
-    const getTokenMetaData = async () => {
 
-      if (GetUriProtocol(token.tokenURI) === "http") {
+    const getTokenMetaData = async () => {
+      if (GetUriProtocol(token.tokenURI) === 'http') {
         setTokenName('Blocked From Accessing Insecure HTTP NFT Content')
         setTokenImage('Blocked From Accessing Insecure HTTP NFT Content')
         setTokenDescription('Blocked From Accessing Insecure HTTP NFT Content')
