@@ -6,3 +6,7 @@ import moment from 'moment'
 export function DateTime(timestamp = Date.now()) {
   return moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
 }
+
+export function RelativeTime(timestamp = Date.now()) {
+  return moment(timestamp).fromNow()
+}
