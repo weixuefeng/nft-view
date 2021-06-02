@@ -175,3 +175,23 @@ body {
     }
   }
 } // End List NFT Cards
+
+table {
+  thead {
+    @apply bg-gray-50;
+    tr th {
+      @apply px-3 py-4 text-left text-xs font-medium text-gray-500 uppercase;
+    }
+  }
+  tbody {
+    tr:nth-child(even) {
+      @apply bg-gray-50;
+    }
+    tr:nth-child(odd) {
+      @apply bg-white;
+    }
+    tr td {
+      @apply px-3 py-3 whitespace-nowrap text-sm text-gray-500;
+    }
+  }
+}
