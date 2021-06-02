@@ -13,14 +13,14 @@ const queryClient = new QueryClient()
 function Home() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div class="py-10">
+      <div className="py-10">
         <header>
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold leading-tight text-gray-900">NFT Explorer</h1>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold leading-tight text-gray-900">NFT Explorer</h1>
           </div>
         </header>
         <main>
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <Stats />
             <Transfers />
             <Tokens />
@@ -167,22 +167,22 @@ function Stats() {
         <span>Error: {error.message}</span>
       ) : (
         <>
-          {data.map(stats => (
-            <div>
-              <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt class="text-sm font-medium text-gray-500 truncate">NFT TOKENS</dt>
-                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokens}</dd>
+          {data.map((stats, index) => (
+            <div key={index}>
+              <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium text-gray-500 truncate">NFT TOKENS</dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokens}</dd>
                 </div>
 
-                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt class="text-sm font-medium text-gray-500 truncate">NFT CONTRACTS</dt>
-                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokenContracts}</dd>
+                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium text-gray-500 truncate">NFT CONTRACTS</dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokenContracts}</dd>
                 </div>
 
-                <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt class="text-sm font-medium text-gray-500 truncate">NFT HOLDERS</dt>
-                  <dd class="mt-1 text-3xl font-semibold text-gray-900">{stats.numOwners}</dd>
+                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium text-gray-500 truncate">NFT HOLDERS</dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numOwners}</dd>
                 </div>
               </dl>
             </div>
@@ -205,11 +205,11 @@ function Transfers() {
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : (
-        <div class="flex flex-col">
-          <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
                   <thead>
                     <tr>
                       <th>Token Contract</th>
@@ -236,7 +236,7 @@ function Transfers() {
                         <td title={DateTime(transfer.transaction.timestamp * 1000)}>
                           {RelativeTime(transfer.transaction.timestamp * 1000)}
                         </td>
-                        <td title={transfer.transaction.id + '(' + 'block:' + transfer.id + ')'}>
+                        <td title={transfer.transaction.id + '(block:' + transfer.id + ')'}>
                           {AddressFormat(transfer.transaction.id)}
                         </td>
                       </tr>
