@@ -75,6 +75,7 @@ function useGetStats() {
               numTokens
               numOwners
               numTokenContracts
+              numTransfers
             }
           }
         `
@@ -169,7 +170,7 @@ function Stats() {
         <>
           {data.map((stats, index) => (
             <div key={index}>
-              <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <dl className="mt-5 grid grid-cols-1 gap-5 grid-cols-2 sm:grid-cols-4">
                 <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                   <dt className="text-sm font-medium text-gray-500 truncate">NFT TOKENS</dt>
                   <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokens}</dd>
@@ -183,6 +184,11 @@ function Stats() {
                 <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                   <dt className="text-sm font-medium text-gray-500 truncate">NFT HOLDERS</dt>
                   <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numOwners}</dd>
+                </div>
+
+                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium text-gray-500 truncate">NFT TRANSFERS</dt>
+                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTransfers}</dd>
                 </div>
               </dl>
             </div>
