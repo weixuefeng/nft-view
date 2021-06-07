@@ -4,7 +4,14 @@ import { request, gql } from 'graphql-request'
 import NftSingle from 'components/NftSingle'
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      cacheTime: 0
+    }
+  }
+})
 
 function ViewNFT() {
   return (
@@ -66,7 +73,7 @@ function Token() {
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : isFetching ? (
-        'Loading...'
+        'reFetching...'
       ) : data === null || data.id === undefined ? (
         'does not exist...'
       ) : (
