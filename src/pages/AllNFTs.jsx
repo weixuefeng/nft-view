@@ -29,6 +29,7 @@ function useGetTokens() {
             mintTime
             tokenURI
             minter
+            mintBlock
             owner {
               id
             }

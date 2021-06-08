@@ -5,10 +5,29 @@ import { AddressFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
 import { Link } from 'react-router-dom'
 
+const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
+
 const NftListCard = props => {
   const token = props.token
   const [tokenName, setTokenName] = useState(null)
   const [tokenImage, setTokenImage] = useState(null)
+
+  const bgParam0 = token.mintBlock * (token.tokenID + 1)
+  const bgParam1 = bgParam0.toString(16)
+  const bgParam2 = (bgParam0 * bgParam0).toString(16)
+  const bgParam3 = (bgParam0 * parseInt(token.minter)).toString(16)
+  const bgParam4 = ((CHAIN_ID + 256) * (token.tokenID + 1)).toString(16)
+  const bgStyle = {
+    background:
+      '#' +
+      bgParam1.charAt(bgParam1.length - 1) +
+      bgParam4.charAt(bgParam4.length - 1) +
+      bgParam2.charAt(1) +
+      token.contract.id.charAt(token.contract.id.length - 2) +
+      bgParam3.charAt(13) +
+      token.minter.charAt(token.minter.length - 2) +
+      `2f`
+  }
 
   useEffect(() => {
     if (!token) {
@@ -39,7 +58,7 @@ const NftListCard = props => {
     <li className="item" key={token.id}>
       <Link to={'/view/' + token.contract.id + '/' + token.tokenID}>
         <header>
-          <div className="collection">
+          <div className="collection" style={bgStyle}>
             <div className="logo">{token.contract.symbol}</div>
             <div className="info">
               <div className="id">

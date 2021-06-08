@@ -24,7 +24,7 @@ body {
       @apply mx-2 mt-2 p-1 flex flex-row rounded-tr-lg rounded-br-lg rounded-tl-3xl rounded-bl-3xl;
       @apply bg-black bg-opacity-10;
       .logo {
-        @apply w-9 h-9 rounded-full p-1 bg-red-100 text-xs text-center;
+        @apply w-9 h-9 rounded-full bg-white p-1 text-xs text-center;
       }
       .info {
         @apply flex flex-col ml-1;
