@@ -27,6 +27,4 @@ export function AddressFormat(address = '', size = '', convert = 'convert') {
     }
     return displayAddress
   }
-
-  
 }
