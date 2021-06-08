@@ -1,5 +1,8 @@
 .viewer {
   @apply bg-white m-4 pb-16 text-gray-800;
+  .mono {
+    @apply font-mono;
+  }
 }
 
 .viewer > .wrapper {
@@ -30,7 +33,7 @@
       }
     }
     .addr {
-      @apply flex text-xs;
+      @apply flex text-xs pr-2;
     }
   }
 }
@@ -58,11 +61,26 @@ section.token-basic {
       width: 100%;
     }
   }
+  h1 {
+    @apply pb-4;
+  }
   .content {
     @apply py-2;
     p {
       @apply py-1;
     }
+  }
+}
+
+.viewer.layout-raw-address main {
+  h1 {
+    @apply text-center font-serif py-12 px-4 text-4xl font-mono font-extralight text-gray-500;
+  }
+  .content {
+    display: none;
+  }
+  .cover {
+    display: none;
   }
 }
 
@@ -88,8 +106,29 @@ section.token-basic {
   }
 }
 
+.viewer.layout-no-title main {
+  h1 {
+    display: none;
+  }
+  .content {
+    @apply text-lg;
+  }
+}
+
 .viewer footer {
   @apply p-4;
+  > div {
+    @apply grid grid-cols-4;
+  }
+  a.button {
+    @apply flex flex-col items-center p-2 bg-gray-200 rounded-lg text-sm;
+    > svg {
+      @apply flex w-8 h-8;
+    }
+    p {
+      @apply flex;
+    }
+  }
 }
 
 .viewer .chain-data {
