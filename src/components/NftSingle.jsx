@@ -17,18 +17,21 @@ const NftSingle = props => {
   const [tokenDescription, setTokenDescription] = useState(null)
   const [layoutType, setLayoutType] = useState('layout-post')
 
-  const bgParam = ((CHAIN_ID + 256) * token.tokenID).toString(16)
-
+  const bgParam0 = token.mintBlock * (token.tokenID + 1)
+  const bgParam1 = bgParam0.toString(16)
+  const bgParam2 = (bgParam0 * bgParam0).toString(16)
+  const bgParam3 = (bgParam0 * parseInt(token.minter)).toString(16)
+  const bgParam4 = ((CHAIN_ID + 256) * (token.tokenID + 1)).toString(16)
   const bgStyle = {
     background:
       '#' +
-      token.contract.id.charAt(token.contract.id.length - 1) +
-      token.minter.charAt(token.minter.length - 1) +
-      bgParam.charAt(bgParam.length - 1) +
+      bgParam1.charAt(bgParam1.length - 1) +
+      bgParam4.charAt(bgParam4.length - 1) +
+      bgParam2.charAt(1) +
       token.contract.id.charAt(token.contract.id.length - 2) +
+      bgParam3.charAt(13) +
       token.minter.charAt(token.minter.length - 2) +
-      bgParam.charAt(bgParam.length - 2) +
-      '2f'
+      `2f`
   }
 
   useEffect(() => {
@@ -141,35 +144,39 @@ const NftSingle = props => {
           </main>
 
           <section className="chain-data">
-            <h4>Chain Info</h4>
-            <dl>
-              <dt>Contract Address</dt>
-              <dd className="mono">{token.contract.id}</dd>
-            </dl>
-            <div>
-              <dl>
-                <dt>Token Name</dt>
-                <dd>{token.contract.name}</dd>
-              </dl>
-              <dl>
-                <dt>Token Symbol</dt>
-                <dd>{token.contract.symbol}</dd>
-              </dl>
-            </div>
-            <div>
-              <dl>
-                <dt>Token ID</dt>
-                <dd className="mono">{token.tokenID}</dd>
-              </dl>
-              <dl>
-                <dt>Created On Block</dt>
-                <dd className="mono">{token.mintBlock}</dd>
-              </dl>
-            </div>
-            <dl>
-              <dt>Token URI</dt>
-              <dd className="mono">{token.tokenURI}</dd>
-            </dl>
+            <details>
+              <summary>Chain Info</summary>
+              <div>
+                <dl>
+                  <dt>Contract Address</dt>
+                  <dd className="mono">{token.contract.id}</dd>
+                </dl>
+                <div>
+                  <dl>
+                    <dt>Token Name</dt>
+                    <dd>{token.contract.name}</dd>
+                  </dl>
+                  <dl>
+                    <dt>Token Symbol</dt>
+                    <dd>{token.contract.symbol}</dd>
+                  </dl>
+                </div>
+                <div>
+                  <dl>
+                    <dt>Token ID</dt>
+                    <dd className="mono">{token.tokenID}</dd>
+                  </dl>
+                  <dl>
+                    <dt>Created On Block</dt>
+                    <dd className="mono">{token.mintBlock}</dd>
+                  </dl>
+                </div>
+                <dl>
+                  <dt>Token URI</dt>
+                  <dd className="mono">{token.tokenURI}</dd>
+                </dl>
+              </div>
+            </details>
           </section>
 
           <footer>

@@ -3,6 +3,9 @@
   .mono {
     @apply font-mono;
   }
+  * {
+    @apply transition-all duration-150;
+  }
 }
 
 .viewer > .wrapper {
@@ -32,7 +35,8 @@
 
   .collection {
     @apply p-1 flex flex-row rounded-tr-xl rounded-br-xl rounded-tl-3xl rounded-bl-3xl;
-    @apply bg-white bg-opacity-25;
+    @apply bg-white bg-opacity-50;
+    @apply hover:bg-opacity-75 hover:shadow-md;
     .logo {
       @apply rounded-full bg-white text-xs text-center;
       > svg {
@@ -55,7 +59,7 @@
 }
 
 section.token-basic {
-  @apply p-4 grid grid-cols-2 gap-x-1 gap-y-1 text-sm pt-0;
+  @apply p-4 grid grid-cols-2 gap-x-1 gap-y-1 text-xs pt-0;
   dl:nth-child(even) {
     @apply text-right;
   }
@@ -65,7 +69,8 @@ section.token-basic {
 }
 
 .viewer main {
-  @apply p-4 bg-white bg-opacity-50 mx-4 rounded-2xl;
+  @apply p-4 bg-white bg-opacity-25 mx-4 rounded-2xl;
+  @apply hover:bg-opacity-50;
   h1 {
     @apply text-2xl py-2;
   }
@@ -90,8 +95,7 @@ section.token-basic {
 
 .viewer.layout-raw-address main {
   h1 {
-    @apply text-center font-serif py-12 px-4 text-4xl font-mono font-extralight text-gray-500;
-    overflow-wrap: break-word;
+    @apply text-center font-serif py-12 px-4 text-4xl font-mono font-extralight text-gray-500 break-all;
   }
   .content {
     display: none;
@@ -138,29 +142,33 @@ section.token-basic {
     @apply grid grid-cols-4;
   }
   a.button {
-    @apply flex flex-col items-center p-2 bg-white bg-opacity-50 rounded-lg text-sm;
+    @apply flex flex-col items-center p-2 bg-white bg-opacity-50 rounded-2xl text-sm;
+    @apply hover:bg-opacity-75;
     > svg {
-      @apply flex w-8 h-8;
+      @apply flex w-6 h-6;
     }
     p {
-      @apply flex;
+      @apply flex text-center;
     }
   }
 }
 
 .viewer .chain-data {
-  @apply m-4 py-4 flex flex-col space-y-1 border-t border-b border-gray-300;
-  h4 {
+  @apply m-4;
+  summary {
     @apply text-lg font-medium;
   }
-  > div {
+  details > div {
+    @apply flex flex-col space-y-1 border-gray-300;
+  }
+  details > div > div {
     @apply grid grid-cols-2 gap-1;
     dl:nth-child(even) {
       @apply text-right;
     }
   }
   dl {
-    @apply text-sm;
+    @apply text-xs;
   }
   dt {
     @apply uppercase opacity-50;
