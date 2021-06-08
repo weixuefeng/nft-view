@@ -65,7 +65,7 @@ const NftListCard = props => {
                 {token.contract.name} <span>{token.tokenID}</span>
               </div>
               <div className="addr">
-                <span alt="{token.contract.id}">{AddressFormat(token.contract.id)}</span>
+                <span alt="{token.contract.id}">{AddressFormat(token.contract.id, 'short', 'raw')}</span>
               </div>
             </div>
           </div>
@@ -82,9 +82,9 @@ const NftListCard = props => {
           <dl>
             <dd>
               <span className="font-mono">
-                <p>Creator: {AddressFormat(token.minter)}</p>
+                <p>Creator: {AddressFormat(token.minter, 'short')}</p>
                 <p>{DateTime(token.mintTime * 1000)}</p>
-                <p>Owner: {AddressFormat(token.owner.id)}</p>
+                <p>Owner: {AddressFormat(token.owner.id, 'short')}</p>
               </span>
             </dd>
           </dl>

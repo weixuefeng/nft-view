@@ -237,13 +237,13 @@ function Transfers() {
                             {transfer.token.tokenID}
                           </Link>
                         </td>
-                        <td>{AddressFormat(transfer.from.id)}</td>
-                        <td>{AddressFormat(transfer.to.id)}</td>
+                        <td>{AddressFormat(transfer.from.id, 'short')}</td>
+                        <td>{AddressFormat(transfer.to.id, 'short')}</td>
                         <td title={DateTime(transfer.transaction.timestamp * 1000)}>
                           {RelativeTime(transfer.transaction.timestamp * 1000)}
                         </td>
                         <td title={transfer.transaction.id + '(block:' + transfer.id + ')'}>
-                          {AddressFormat(transfer.transaction.id)}
+                          {AddressFormat(transfer.transaction.id, 'short', 'raw')}
                         </td>
                       </tr>
                     ))}

@@ -112,7 +112,7 @@ const NftSingle = props => {
                 <div className="addr">
                   <span alt={token.contract.id}>
                     {CHAIN_ID + ':'}
-                    <span className="mono">{AddressFormat(token.contract.id)}</span>
+                    <span className="mono">{AddressFormat(token.contract.id, 'short', 'raw')}</span>
                   </span>
                 </div>
               </div>
@@ -126,12 +126,12 @@ const NftSingle = props => {
             </dl>
             <dl>
               <dt>Created By</dt>
-              <dd className="mono">{AddressFormat(token.minter)}</dd>
+              <dd className="mono">{AddressFormat(token.minter, 'short')}</dd>
             </dl>
             <dl></dl>
             <dl>
               <dt>Current Holder</dt>
-              <dd className="mono">{AddressFormat(token.owner.id)}</dd>
+              <dd className="mono">{AddressFormat(token.owner.id, 'short')}</dd>
             </dl>
           </section>
 
