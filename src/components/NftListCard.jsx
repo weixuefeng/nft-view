@@ -16,7 +16,7 @@ const NftListCard = props => {
   const bgParam1 = bgParam0.toString(16)
   const bgParam2 = (bgParam0 * bgParam0).toString(16)
   const bgParam3 = (bgParam0 * parseInt(token.minter)).toString(16)
-  const bgParam4 = ((CHAIN_ID + 256) * (token.tokenID + 1)).toString(16)
+  const bgParam4 = ((parseInt(CHAIN_ID) + 256) * (token.tokenID + 1)).toString(16)
   const bgStyle = {
     background:
       '#' +
