@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 import { request, gql } from 'graphql-request'
 import NftSingle from 'components/NftSingle'
+import NftSingleLoadingView from 'components/NftSingleLoadingView'
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient({
@@ -69,7 +70,7 @@ function Token() {
   return (
     <div>
       {status === 'loading' ? (
-        'Loading...'
+        <NftSingleLoadingView />
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : isFetching ? (

@@ -177,3 +177,14 @@ section.token-basic {
     @apply w-full truncate;
   }
 }
+
+.viewer.loader .wrapper {
+  @apply bg-gray-200 animate-pulse;
+  main > .cover {
+    @apply block mb-4;
+    height: 50vh;
+  }
+  header .collection {
+    width: 10rem;
+  }
+}
