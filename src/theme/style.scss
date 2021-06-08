@@ -1,12 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'viewer';
 
 body {
   @apply bg-white text-black;
-  h1 {
-    @apply uppercase;
-  }
 }
 
 // List NFT Cards

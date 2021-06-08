@@ -1,0 +1,115 @@
+.viewer {
+  @apply bg-white m-4 pb-16 text-gray-800;
+}
+
+.viewer > .wrapper {
+  @apply mx-auto max-w-xl bg-gray-100 shadow-2xl;
+
+  @apply rounded-3xl;
+  header {
+    @apply p-2;
+    @apply flex flex-row;
+  }
+
+  .collection {
+    @apply p-1 flex flex-row rounded-tr-xl rounded-br-xl rounded-tl-3xl rounded-bl-3xl;
+    @apply bg-black bg-opacity-10;
+    .logo {
+      @apply rounded-full bg-white text-xs text-center;
+      > svg {
+        @apply w-7 h-7 m-1;
+      }
+    }
+    .info {
+      @apply flex flex-col ml-1;
+    }
+    .contract {
+      @apply font-medium text-sm;
+      span {
+        @apply text-xs bg-white bg-opacity-50 px-2 py-0.5 rounded-lg font-normal;
+      }
+    }
+    .addr {
+      @apply flex text-xs;
+    }
+  }
+}
+
+section.token-basic {
+  @apply p-4 grid grid-cols-2 gap-x-1 gap-y-1 text-sm pt-0;
+  dl:nth-child(even) {
+    @apply text-right;
+  }
+  dt {
+    @apply uppercase opacity-50;
+  }
+}
+
+.viewer main {
+  @apply p-4 bg-white bg-opacity-50 mx-4 rounded-2xl;
+  h1 {
+    @apply text-2xl py-2;
+  }
+  .cover {
+    @apply text-sm content-center text-center;
+    > * {
+      @apply rounded-lg;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  .content {
+    @apply py-2;
+    p {
+      @apply py-1;
+    }
+  }
+}
+
+.viewer.layout-big-title main {
+  h1 {
+    @apply text-center font-serif py-12 px-4 text-4xl;
+  }
+  .content {
+    display: none;
+  }
+  .cover {
+    display: none;
+  }
+}
+
+.viewer.layout-media-cover main {
+  @apply p-0 rounded-lg;
+  h1 {
+    display: none;
+  }
+  .content {
+    display: none;
+  }
+}
+
+.viewer footer {
+  @apply p-4;
+}
+
+.viewer .chain-data {
+  @apply m-4 py-4 flex flex-col space-y-1 border-t border-b border-gray-300;
+  h4 {
+    @apply text-lg font-medium;
+  }
+  > div {
+    @apply grid grid-cols-2 gap-1;
+    dl:nth-child(even) {
+      @apply text-right;
+    }
+  }
+  dl {
+    @apply text-sm;
+  }
+  dt {
+    @apply uppercase opacity-50;
+  }
+  dd {
+    @apply w-full truncate;
+  }
+}
