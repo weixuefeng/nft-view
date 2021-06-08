@@ -17,6 +17,20 @@ const NftSingle = props => {
   const [tokenDescription, setTokenDescription] = useState(null)
   const [layoutType, setLayoutType] = useState('layout-post')
 
+  const bgParam = ((CHAIN_ID + 256) * token.tokenID).toString(16)
+
+  const bgStyle = {
+    background:
+      '#' +
+      token.contract.id.charAt(token.contract.id.length - 1) +
+      token.minter.charAt(token.minter.length - 1) +
+      bgParam.charAt(bgParam.length - 1) +
+      token.contract.id.charAt(token.contract.id.length - 2) +
+      token.minter.charAt(token.minter.length - 2) +
+      bgParam.charAt(bgParam.length - 2) +
+      '2f'
+  }
+
   useEffect(() => {
     layoutNumber = 0
     if (!token) {
@@ -82,7 +96,7 @@ const NftSingle = props => {
   return (
     <>
       <div className={'viewer ' + layoutType}>
-        <div className="wrapper">
+        <div className="wrapper" style={bgStyle}>
           <header>
             <div className="collection">
               <div className="logo">
@@ -93,7 +107,10 @@ const NftSingle = props => {
                   {token.contract.name} <span>{token.tokenID}</span>
                 </div>
                 <div className="addr">
-                  <span alt={token.contract.id}>{CHAIN_ID + ':'}<span className="mono">{AddressFormat(token.contract.id)}</span></span>
+                  <span alt={token.contract.id}>
+                    {CHAIN_ID + ':'}
+                    <span className="mono">{AddressFormat(token.contract.id)}</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -106,12 +123,12 @@ const NftSingle = props => {
             </dl>
             <dl>
               <dt>Created By</dt>
-              <dd className='mono'>{AddressFormat(token.minter)}</dd>
+              <dd className="mono">{AddressFormat(token.minter)}</dd>
             </dl>
             <dl></dl>
             <dl>
               <dt>Current Holder</dt>
-              <dd className='mono'>{AddressFormat(token.owner.id)}</dd>
+              <dd className="mono">{AddressFormat(token.owner.id)}</dd>
             </dl>
           </section>
 
@@ -127,7 +144,7 @@ const NftSingle = props => {
             <h4>Chain Info</h4>
             <dl>
               <dt>Contract Address</dt>
-              <dd className='mono'>{token.contract.id}</dd>
+              <dd className="mono">{token.contract.id}</dd>
             </dl>
             <div>
               <dl>
@@ -142,16 +159,16 @@ const NftSingle = props => {
             <div>
               <dl>
                 <dt>Token ID</dt>
-                <dd className='mono'>{token.tokenID}</dd>
+                <dd className="mono">{token.tokenID}</dd>
               </dl>
               <dl>
                 <dt>Created On Block</dt>
-                <dd className='mono'>{token.mintBlock}</dd>
+                <dd className="mono">{token.mintBlock}</dd>
               </dl>
             </div>
             <dl>
               <dt>Token URI</dt>
-              <dd className='mono'>{token.tokenURI}</dd>
+              <dd className="mono">{token.tokenURI}</dd>
             </dl>
           </section>
 

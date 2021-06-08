@@ -6,7 +6,23 @@
 }
 
 .viewer > .wrapper {
-  @apply mx-auto max-w-xl bg-gray-100 shadow-2xl;
+  @apply mx-auto max-w-xl shadow-2xl;
+  overflow: hidden;
+
+  .overlay:before {
+    @apply z-10 w-full opacity-80;
+    content: '1 ';
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #ffffff;
+  }
+
+  .inner {
+    @apply z-20 relative;
+  }
 
   @apply rounded-3xl;
   header {
@@ -16,7 +32,7 @@
 
   .collection {
     @apply p-1 flex flex-row rounded-tr-xl rounded-br-xl rounded-tl-3xl rounded-bl-3xl;
-    @apply bg-black bg-opacity-10;
+    @apply bg-white bg-opacity-25;
     .logo {
       @apply rounded-full bg-white text-xs text-center;
       > svg {
@@ -29,7 +45,7 @@
     .contract {
       @apply font-medium text-sm;
       span {
-        @apply text-xs bg-white bg-opacity-50 px-2 py-0.5 rounded-lg font-normal;
+        @apply text-xs bg-black bg-opacity-5 px-2 py-0.5 rounded-lg font-normal;
       }
     }
     .addr {
@@ -75,6 +91,7 @@ section.token-basic {
 .viewer.layout-raw-address main {
   h1 {
     @apply text-center font-serif py-12 px-4 text-4xl font-mono font-extralight text-gray-500;
+    overflow-wrap: break-word;
   }
   .content {
     display: none;
@@ -121,7 +138,7 @@ section.token-basic {
     @apply grid grid-cols-4;
   }
   a.button {
-    @apply flex flex-col items-center p-2 bg-gray-200 rounded-lg text-sm;
+    @apply flex flex-col items-center p-2 bg-white bg-opacity-50 rounded-lg text-sm;
     > svg {
       @apply flex w-8 h-8;
     }
