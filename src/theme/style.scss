@@ -30,3 +30,27 @@ table {
 .ic {
   @apply w-4 h-4 mx-0.5 inline text-gray-400 dark:text-gray-500;
 }
+
+.home-stats {
+  @apply bg-black p-4 sm:p-8 py-12 text-gray-200;
+  $home-stats-gradient-start: #1b2735;
+  $home-stats-gradient-end: #090a0f;
+  background: radial-gradient(ellipse at bottom, $home-stats-gradient-start 0%, $home-stats-gradient-end 100%);
+
+  .wrapper {
+    @apply max-w-7xl mx-auto py-8 px-10 bg-white bg-opacity-5 rounded-2xl;
+  }
+
+  dl {
+    @apply grid grid-cols-1 gap-4 grid-cols-2 sm:grid-cols-4;
+    > div {
+      @apply px-3 border-l border-l-2 border-gray-300 overflow-hidden;
+    }
+    dt {
+      @apply text-sm truncate;
+    }
+    dd {
+      @apply text-2xl font-light;
+    }
+  }
+}
