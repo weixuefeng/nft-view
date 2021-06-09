@@ -23,16 +23,9 @@ function Home() {
           </div>
         </header>
         <main>
-          <div className="home-stats">
-            <div className="wrapper">
-              <Stats />
-            </div>
-          </div>
+          <Stats />
 
           <div className="max-w-7xl py-4 mx-auto sm:px-6 lg:px-8">
-            <header>
-              <h3 className="text-xl font-bold leading-tight">Transfers</h3>
-            </header>
             <Transfers />
           </div>
         </main>
@@ -117,52 +110,61 @@ function Stats() {
   return (
     <div>
       {status === 'loading' ? (
-        <div className="animate-pulse">
-          <dl>
-            <div>
-              <dt>NFT TOKENS</dt>
-              <dd>-</dd>
+        <div className="home-stats">
+          <div className="wrapper">
+            <div className="animate-pulse">
+              <dl>
+                <div>
+                  <dt>TOKENS</dt>
+                  <dd>-</dd>
+                </div>
+                <div>
+                  <dt>CONTRACTS</dt>
+                  <dd>-</dd>
+                </div>
+                <div>
+                  <dt>HOLDERS</dt>
+                  <dd>-</dd>
+                </div>
+                <div>
+                  <dt>TRANSFERS</dt>
+                  <dd>-</dd>
+                </div>
+              </dl>
             </div>
-            <div>
-              <dt>NFT CONTRACTS</dt>
-              <dd>-</dd>
-            </div>
-            <div>
-              <dt>NFT HOLDERS</dt>
-              <dd>-</dd>
-            </div>
-            <div>
-              <dt>NFT TRANSFERS</dt>
-              <dd>-</dd>
-            </div>
-          </dl>
+          </div>
         </div>
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : (
         <>
-          {data.map((stats, index) => (
-            <div key={index}>
-              <dl>
-                <div>
-                  <dt>NFT TOKENS {isFetching ? 'Updating...' : ''}</dt>
-                  <dd>{stats.numTokens}</dd>
+          <div className="home-stats">
+            <div className="wrapper">
+              {isFetching ? <div className="loading-dot" /> : ''}
+              {data.map((stats, index) => (
+                <div key={index}>
+                  <dl>
+                    <div>
+                      <dt>TOKENS</dt>
+                      <dd>{stats.numTokens}</dd>
+                    </div>
+                    <div>
+                      <dt>CONTRACTS</dt>
+                      <dd>{stats.numTokenContracts}</dd>
+                    </div>
+                    <div>
+                      <dt>HOLDERS</dt>
+                      <dd>{stats.numOwners}</dd>
+                    </div>
+                    <div>
+                      <dt>TRANSFERS</dt>
+                      <dd>{stats.numTransfers}</dd>
+                    </div>
+                  </dl>
                 </div>
-                <div>
-                  <dt>NFT CONTRACTS {isFetching ? 'Updating...' : ''}</dt>
-                  <dd>{stats.numTokenContracts}</dd>
-                </div>
-                <div>
-                  <dt>NFT HOLDERS {isFetching ? 'Updating...' : ''}</dt>
-                  <dd>{stats.numOwners}</dd>
-                </div>
-                <div>
-                  <dt>NFT TRANSFERS {isFetching ? 'Updating...' : ''}</dt>
-                  <dd>{stats.numTransfers}</dd>
-                </div>
-              </dl>
+              ))}
             </div>
-          ))}
+          </div>
         </>
       )}
     </div>
@@ -174,7 +176,12 @@ function Transfers() {
 
   return (
     <div>
-      <h4>Latest Transfers {isFetching ? 'Updating...' : ''}</h4>
+      <header className="home-table">
+        <h3 className="text-xl font-bold leading-tight">
+          Transfers {isFetching ? <div className="loading-dot" /> : ''}
+        </h3>
+      </header>
+      <h4>Latest Transfers</h4>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -192,7 +199,9 @@ function Transfers() {
                 </thead>
                 <tbody>
                   {status === 'loading' ? (
-                    'Loading...'
+                    <tr>
+                      <td colSpan="6">Loading</td>
+                    </tr>
                   ) : status === 'error' ? (
                     <span>Error: {error.message}</span>
                   ) : (
