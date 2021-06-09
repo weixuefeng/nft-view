@@ -22,7 +22,7 @@ const NftSingle = props => {
   const bgParam2 = (bgParam0 * bgParam0).toString(16)
   const bgParam3 = (bgParam0 * parseInt(token.minter)).toString(16)
   const bgParam4 = ((parseInt(CHAIN_ID) + 256) * (token.tokenID + 1)).toString(16)
-  const bgStyle = {
+  let bgStyle = {
     background:
       '#' +
       bgParam1.charAt(bgParam1.length - 1) +
@@ -30,9 +30,10 @@ const NftSingle = props => {
       bgParam2.charAt(1) +
       token.contract.id.charAt(token.contract.id.length - 2) +
       bgParam3.charAt(13) +
-      token.minter.charAt(token.minter.length - 2) +
-      `2f`
+      token.minter.charAt(token.minter.length - 2)
   }
+
+  const [bgImgCover, setBgImgCover] = useState(bgStyle)
 
   useEffect(() => {
     layoutNumber = 0
@@ -60,7 +61,11 @@ const NftSingle = props => {
         setTokenDescription('')
       } else {
         setTokenDescription(
-          tokenMetaData.description.split(/\n+|<br \/>+|<br\/>+|<br>+/).map((str, index) => <p key={index}>{str}</p>)
+          <div className="content">
+            {tokenMetaData.description.split(/\n+|<br \/>+|<br\/>+|<br>+/).map((str, index) => (
+              <p key={index}>{str}</p>
+            ))}
+          </div>
         )
         layoutNumber = layoutNumber + 2
       }
@@ -69,7 +74,18 @@ const NftSingle = props => {
         setTokenImage('')
       } else {
         const imgUrl = UriResolver(tokenMetaData.image)
-        setTokenImage(<img src={imgUrl} alt="" />)
+        setTokenImage(
+          <div className="cover">
+            <img src={imgUrl} alt="" />
+          </div>
+        )
+
+        setBgImgCover({
+          backgroundImage: `url(${imgUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        })
+
         layoutNumber = layoutNumber + 4
       }
 
@@ -99,97 +115,98 @@ const NftSingle = props => {
   return (
     <>
       <div className={'viewer ' + layoutType}>
-        <div className="wrapper" style={bgStyle}>
-          <header>
-            <div className="collection">
-              <div className="logo">
-                <NewtonCoinIcon />
-              </div>
-              <div className="info">
-                <div className="contract">
-                  {token.contract.name} <span>{token.tokenID}</span>
+        <div className="wrapper" style={bgImgCover}>
+          <div className="ol"></div>
+          <div className="inner">
+            <header>
+              <div className="collection">
+                <div className="logo">
+                  <NewtonCoinIcon />
                 </div>
-                <div className="addr">
-                  <span alt={token.contract.id}>
-                    {CHAIN_ID + ':'}
-                    <span className="mono">{AddressFormat(token.contract.id, 'short', 'raw')}</span>
-                  </span>
+                <div className="info">
+                  <div className="contract">
+                    {token.contract.name} <span>{token.tokenID}</span>
+                  </div>
+                  <div className="addr">
+                    <span alt={token.contract.id}>
+                      {CHAIN_ID + ':'}
+                      <span className="mono">{AddressFormat(token.contract.id, 'short', 'raw')}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <section className="token-basic">
-            <dl>
-              <dt>Created On</dt>
-              <dd>{DateTime(token.mintTime * 1000)}</dd>
-            </dl>
-            <dl>
-              <dt>Created By</dt>
-              <dd className="mono">{AddressFormat(token.minter, 'short')}</dd>
-            </dl>
-            <dl></dl>
-            <dl>
-              <dt>Current Holder</dt>
-              <dd className="mono">{AddressFormat(token.owner.id, 'short')}</dd>
-            </dl>
-          </section>
+            <section className="token-basic">
+              <dl>
+                <dt>Created On</dt>
+                <dd>{DateTime(token.mintTime * 1000)}</dd>
+              </dl>
+              <dl>
+                <dt>Creator</dt>
+                <dd className="mono">{AddressFormat(token.minter, 'short')}</dd>
+              </dl>
+              <dl></dl>
+              <dl>
+                <dt>Holder</dt>
+                <dd className="mono">{AddressFormat(token.owner.id, 'short')}</dd>
+              </dl>
+            </section>
 
-          <main>
-            <h1>{tokenName}</h1>
+            <main>
+              <h1>{tokenName}</h1>
+              {tokenImage}
+              {tokenDescription}
+            </main>
 
-            <div className="cover">{tokenImage}</div>
+            <section className="chain-data">
+              <details>
+                <summary>Chain Info</summary>
+                <div>
+                  <dl>
+                    <dt>Contract Address</dt>
+                    <dd className="mono">{token.contract.id}</dd>
+                  </dl>
+                  <div>
+                    <dl>
+                      <dt>Token Name</dt>
+                      <dd>{token.contract.name}</dd>
+                    </dl>
+                    <dl>
+                      <dt>Token Symbol</dt>
+                      <dd>{token.contract.symbol}</dd>
+                    </dl>
+                  </div>
+                  <div>
+                    <dl>
+                      <dt>Token ID</dt>
+                      <dd className="mono">{token.tokenID}</dd>
+                    </dl>
+                    <dl>
+                      <dt>Created On Block</dt>
+                      <dd className="mono">{token.mintBlock}</dd>
+                    </dl>
+                  </div>
+                  <dl>
+                    <dt>Token URI</dt>
+                    <dd className="mono">{token.tokenURI}</dd>
+                  </dl>
+                </div>
+              </details>
+            </section>
 
-            <div className="content">{tokenDescription}</div>
-          </main>
-
-          <section className="chain-data">
-            <details>
-              <summary>Chain Info</summary>
+            <footer>
               <div>
-                <dl>
-                  <dt>Contract Address</dt>
-                  <dd className="mono">{token.contract.id}</dd>
-                </dl>
-                <div>
-                  <dl>
-                    <dt>Token Name</dt>
-                    <dd>{token.contract.name}</dd>
-                  </dl>
-                  <dl>
-                    <dt>Token Symbol</dt>
-                    <dd>{token.contract.symbol}</dd>
-                  </dl>
-                </div>
-                <div>
-                  <dl>
-                    <dt>Token ID</dt>
-                    <dd className="mono">{token.tokenID}</dd>
-                  </dl>
-                  <dl>
-                    <dt>Created On Block</dt>
-                    <dd className="mono">{token.mintBlock}</dd>
-                  </dl>
-                </div>
-                <dl>
-                  <dt>Token URI</dt>
-                  <dd className="mono">{token.tokenURI}</dd>
-                </dl>
+                <a
+                  href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID}
+                  className="button"
+                >
+                  <SearchIcon />
+                  <p>View In Explorer</p>
+                </a>
               </div>
-            </details>
-          </section>
-
-          <footer>
-            <div>
-              <a
-                href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID}
-                className="button"
-              >
-                <SearchIcon />
-                <p>View In Explorer</p>
-              </a>
-            </div>
-          </footer>
+            </footer>
+          </div>
         </div>
       </div>
     </>
