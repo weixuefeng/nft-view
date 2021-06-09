@@ -1,0 +1,166 @@
+// List NFT Cards
+.list.nft_card_list {
+  @apply mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-4 md:grid-cols-3 lg:grid-cols-4 w-full;
+
+  .item {
+    @apply col-span-1 flex flex-col text-center shadow-lg rounded-xl;
+    @apply border border-white bg-white hover:border-gray-100;
+    @apply dark:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-700;
+    // @apply sm:hover:transform sm:hover:scale-105;
+
+    header {
+      @apply flex flex-row;
+    }
+    .collection {
+      @apply mx-2 mt-2 p-1 flex flex-row rounded-tr-lg rounded-br-lg rounded-tl-3xl rounded-bl-3xl;
+      @apply bg-black bg-opacity-10;
+      .logo {
+        @apply w-9 h-9 rounded-full bg-white p-1 text-xs text-center;
+      }
+      .info {
+        @apply flex flex-col ml-1;
+      }
+      .id {
+        @apply font-medium text-sm;
+        span {
+          @apply text-xs bg-black bg-opacity-10 px-2 rounded-md font-normal;
+        }
+      }
+      .addr {
+        @apply flex text-xs;
+      }
+    }
+
+    // Cover
+    .cover {
+      @apply p-2 rounded-lg relative;
+
+      .perfect_square {
+        width: 100%;
+        padding-bottom: 100%;
+        @apply relative rounded-lg;
+
+        // img {
+        //   @apply absolute w-full h-full object-cover rounded-xl;
+        //   &:hover {
+        //     @apply object-contain;
+        //   }
+        // }
+
+        img {
+          @apply absolute w-full h-full object-cover rounded-lg;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        video {
+          @apply absolute w-full h-full object-cover rounded-lg;
+          @apply w-auto h-auto max-h-full max-w-full;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          overflow: hidden;
+        }
+      }
+
+      // Corners
+      & .tl,
+      & .tr,
+      & .bl,
+      & .br {
+        @apply text-xs text-white text-opacity-75 group-hover:text-opacity-100 font-light bg-black bg-opacity-10 group-hover:bg-opacity-50 rounded-md p-1;
+      }
+
+      .tl {
+        @apply absolute top-4 left-4 text-left;
+      }
+      .tr {
+        @apply absolute top-4 right-4;
+      }
+      .bl {
+        @apply absolute bottom-4 left-4 text-left rounded-lg;
+      }
+      .br {
+        @apply absolute bottom-4 right-4;
+      }
+      .collection_name {
+        @apply px-2 text-xs sm:text-sm font-medium bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500;
+      }
+      .token_id {
+        @apply text-sm;
+      }
+      .redeemable {
+        @apply text-xs text-white rounded-lg p-1 flex items-center pr-2 uppercase font-medium;
+        @apply absolute top-2 left-2 text-left;
+        @apply bg-gradient-to-r from-purple-400 to-purple-500;
+        svg {
+          @apply w-2.5 h-2.5 absolute top-1 left-4 bg-white text-green-500 rounded-full;
+        }
+        svg:first-of-type {
+          @apply w-5 h-5 relative top-0 left-0 mr-1 text-white bg-transparent;
+        }
+      }
+    }
+    &:hover .cover .tl,
+    &:hover .cover .tr,
+    &:hover .cover .bl,
+    &:hover .cover .br {
+      @apply bg-opacity-50;
+    }
+    // End Cover
+  }
+  .item:hover .cover .perfect_square img {
+    @apply w-auto h-auto max-h-full max-w-full;
+  }
+
+  // Profile
+  .item .profile {
+    @apply flex-1 flex flex-col px-3 pb-1 text-left -mt-1;
+
+    h3 {
+      @apply text-gray-800 text-lg sm:text-sm font-medium sm:font-normal truncate;
+      @apply dark:text-gray-300;
+    }
+
+    dl {
+      @apply mt-0 flex-grow flex flex-col justify-between;
+      dd {
+        @apply text-gray-500 text-sm;
+      }
+    }
+  }
+
+  // Footer
+  .item .footer {
+    @apply flex-1 mx-3 pb-2 mt-0 border-t pt-1 text-base sm:text-xs relative;
+    @apply dark:border-gray-800;
+    .tl {
+      // Status Label
+      @apply flex-none text-xs uppercase;
+    }
+    .tr {
+      @apply flex-grow text-xs text-right text-gray-400 text-sm;
+      em {
+        @apply not-italic text-gray-500 font-light mr-2;
+      }
+    }
+    .bl {
+      @apply flex-shrink text-gray-500 font-light text-xs truncate pt-1 -mt-1;
+    }
+    .br.price {
+      @apply flex-grow text-gray-700 text-right text-sm sm:text-xs font-mono font-bold;
+      @apply dark:text-gray-300;
+    }
+
+    // Status Label Color
+    &.sale .tl {
+      @apply text-green-500;
+    }
+    &.auction .tl {
+      @apply text-yellow-500;
+    }
+    &.off .tl {
+      @apply text-gray-400;
+    }
+  }
+} // End List NFT Cards

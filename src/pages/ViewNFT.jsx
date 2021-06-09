@@ -74,7 +74,7 @@ function Token() {
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : isFetching ? (
-        'reFetching...'
+        <NftSingleLoadingView />
       ) : data === null || data.id === undefined ? (
         'does not exist...'
       ) : (

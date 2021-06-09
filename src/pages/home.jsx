@@ -16,7 +16,7 @@ function Home() {
       <div className="py-10">
         <header>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold leading-tight text-gray-900">NFT Explorer</h1>
+            <h1 className="text-3xl font-bold leading-tight">NFT Explorer</h1>
           </div>
         </header>
         <main>
@@ -171,24 +171,24 @@ function Stats() {
           {data.map((stats, index) => (
             <div key={index}>
               <dl className="mt-5 grid grid-cols-1 gap-5 grid-cols-2 sm:grid-cols-4">
-                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt className="text-sm font-medium text-gray-500 truncate">NFT TOKENS</dt>
-                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokens}</dd>
+                <div className="px-4 py-5 bg-white dark:bg-gray-900 shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium truncate">NFT TOKENS</dt>
+                  <dd className="mt-1 text-3xl font-semibold">{stats.numTokens}</dd>
                 </div>
 
-                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt className="text-sm font-medium text-gray-500 truncate">NFT CONTRACTS</dt>
-                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTokenContracts}</dd>
+                <div className="px-4 py-5 bg-white dark:bg-gray-900 shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium truncate">NFT CONTRACTS</dt>
+                  <dd className="mt-1 text-3xl font-semibold">{stats.numTokenContracts}</dd>
                 </div>
 
-                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt className="text-sm font-medium text-gray-500 truncate">NFT HOLDERS</dt>
-                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numOwners}</dd>
+                <div className="px-4 py-5 bg-white dark:bg-gray-900 shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium truncate">NFT HOLDERS</dt>
+                  <dd className="mt-1 text-3xl font-semibold">{stats.numOwners}</dd>
                 </div>
 
-                <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                  <dt className="text-sm font-medium text-gray-500 truncate">NFT TRANSFERS</dt>
-                  <dd className="mt-1 text-3xl font-semibold text-gray-900">{stats.numTransfers}</dd>
+                <div className="px-4 py-5 bg-white dark:bg-gray-900 shadow rounded-lg overflow-hidden sm:p-6">
+                  <dt className="text-sm font-medium truncate">NFT TRANSFERS</dt>
+                  <dd className="mt-1 text-3xl font-semibold">{stats.numTransfers}</dd>
                 </div>
               </dl>
             </div>
@@ -214,8 +214,8 @@ function Transfers() {
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
+              <div className="shadow overflow-hidden sm:rounded-lg">
+                <table className="min-w-full">
                   <thead>
                     <tr>
                       <th>Token Contract</th>
