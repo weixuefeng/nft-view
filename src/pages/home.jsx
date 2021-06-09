@@ -5,7 +5,9 @@ import NftListCard from 'components/NftListCard'
 import { Link } from 'react-router-dom'
 import { AddressFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
+import { ExternalLinkIcon } from '@heroicons/react/outline'
 
+const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const endpoint2 = process.env.REACT_APP_API_ENDPOINT_2
 const queryClient = new QueryClient()
@@ -232,18 +234,25 @@ function Transfers() {
                         <td title={transfer.token.registry.id}>
                           {transfer.token.registry.name} ({transfer.token.registry.symbol})
                         </td>
-                        <td>
+                        <td className="mono">
                           <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
                             {transfer.token.tokenID}
                           </Link>
                         </td>
-                        <td>{AddressFormat(transfer.from.id, 'short')}</td>
-                        <td>{AddressFormat(transfer.to.id, 'short')}</td>
+                        <td className="mono">{AddressFormat(transfer.from.id, 'short')}</td>
+                        <td className="mono">{AddressFormat(transfer.to.id, 'short')}</td>
                         <td title={DateTime(transfer.transaction.timestamp * 1000)}>
                           {RelativeTime(transfer.transaction.timestamp * 1000)}
                         </td>
-                        <td title={transfer.transaction.id + '(block:' + transfer.id + ')'}>
-                          {AddressFormat(transfer.transaction.id, 'short', 'raw')}
+                        <td title={transfer.transaction.id + '(block:' + transfer.id + ')'} className="mono">
+                          <a
+                            href={EXPLORER_BASE_URL + 'tx/' + transfer.transaction.id}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                          >
+                            {AddressFormat(transfer.transaction.id, 'short', 'raw')}
+                          </a>
+                          <ExternalLinkIcon className="ic" />
                         </td>
                       </tr>
                     ))}

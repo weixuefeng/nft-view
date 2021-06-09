@@ -26,3 +26,7 @@ table {
     }
   }
 }
+
+.ic {
+  @apply w-4 h-4 mx-0.5 inline text-gray-400 dark:text-gray-500;
+}
