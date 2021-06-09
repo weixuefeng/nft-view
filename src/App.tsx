@@ -8,7 +8,7 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>NFT Explorer</title>
+        <title>NFT Viewer</title>
       </Helmet>
       <Router>
         <Switch>
@@ -23,7 +23,7 @@ function App() {
           </Route>
           <Route>
             <Helmet>
-              <title>404 - NFT Explorer</title>
+              <title>404 - NFT Viewer</title>
             </Helmet>
             <p>404</p>
           </Route>
