@@ -53,7 +53,7 @@ function Tokens() {
   return (
     <div>
       <Helmet>
-        <title>NFT Transfers</title>
+        <title>NFTs</title>
       </Helmet>
       <h1>Tokens</h1>
 
