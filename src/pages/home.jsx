@@ -4,7 +4,7 @@ import { request, gql } from 'graphql-request'
 import { Link } from 'react-router-dom'
 import { AddressFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
-import { ExternalLinkIcon } from '@heroicons/react/outline'
+import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
 
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
@@ -191,7 +191,9 @@ function Transfers() {
                   <tr>
                     <th>Token Contract</th>
                     <th>TokenID</th>
-                    <th>From</th>
+                    <th className="text-right">
+                      From <ArrowSmRightIcon className="ic" />
+                    </th>
                     <th>To</th>
                     <th>Time</th>
                     <th>Txn Hash</th>
@@ -216,7 +218,9 @@ function Transfers() {
                               {transfer.token.tokenID}
                             </Link>
                           </td>
-                          <td className="mono">{AddressFormat(transfer.from.id, 'short')}</td>
+                          <td className="mono text-right">
+                            {AddressFormat(transfer.from.id, 'short')} <ArrowSmRightIcon className="ic" />
+                          </td>
                           <td className="mono">{AddressFormat(transfer.to.id, 'short')}</td>
                           <td title={DateTime(transfer.transaction.timestamp * 1000)}>
                             {RelativeTime(transfer.transaction.timestamp * 1000)}
