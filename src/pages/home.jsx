@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { AddressFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
 import { ExternalLinkIcon } from '@heroicons/react/outline'
+import { Helmet } from 'react-helmet-async'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const endpoint = process.env.REACT_APP_API_ENDPOINT
@@ -136,6 +137,9 @@ function Tokens() {
 
   return (
     <div>
+      <Helmet>
+        <title>NFT Explorer</title>
+      </Helmet>
       <h1>New Tokens</h1>
       <Link to="/all">View All NFTs</Link>
       <div>

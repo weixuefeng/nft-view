@@ -5,6 +5,7 @@ import { AddressFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
 import { NewtonCoinIcon } from 'components/icons'
 import { SearchIcon } from '@heroicons/react/outline'
+import { Helmet } from 'react-helmet-async'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
@@ -16,6 +17,7 @@ const NftSingle = props => {
   const [tokenImage, setTokenImage] = useState(null)
   const [tokenDescription, setTokenDescription] = useState(null)
   const [layoutType, setLayoutType] = useState('layout-post')
+  const [pageTitle, setPageTitle] = useState('Loading: ' + token.contract.id + '-' + token.tokenID)
 
   const bgParam0 = token.mintBlock * (token.tokenID + 1)
   const bgParam1 = bgParam0.toString(16)
@@ -44,6 +46,7 @@ const NftSingle = props => {
     const getTokenMetaData = async () => {
       if (GetUriProtocol(token.tokenURI) === 'http') {
         setTokenName('Blocked From Accessing Insecure HTTP NFT Content')
+        setPageTitle(token.contract.id + '-' + token.tokenID)
         setLayoutType('layout-raw-address')
         return
       }
@@ -52,8 +55,10 @@ const NftSingle = props => {
 
       if (!tokenMetaData.name || tokenMetaData.name === '') {
         setTokenName('')
+        setPageTitle(token.contract.name + ': #' + token.tokenID)
       } else {
         setTokenName(tokenMetaData.name)
+        setPageTitle(tokenMetaData.name + ' (' + token.contract.name + ': #' + token.tokenID + ')')
         layoutNumber = layoutNumber + 1
       }
 
@@ -114,6 +119,9 @@ const NftSingle = props => {
 
   return (
     <>
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
       <div className={'viewer ' + layoutType}>
         <div className="wrapper" style={bgImgCover}>
           <div className="ol"></div>

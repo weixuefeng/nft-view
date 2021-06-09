@@ -3,6 +3,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 import { request, gql } from 'graphql-request'
 import NftSingle from 'components/NftSingle'
 import NftSingleLoadingView from 'components/NftSingleLoadingView'
+import { Helmet } from 'react-helmet-async'
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient({
@@ -64,11 +65,15 @@ function Token() {
   contract = contract === null ? '' : contract
   id = id === null ? '' : id
   const lookTokenID = contract.toLowerCase() + '-' + id
+  let pageTitle = lookTokenID
 
   const { status, data, error, isFetching } = useGetSingle(lookTokenID)
 
   return (
     <div>
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
       {status === 'loading' ? (
         <NftSingleLoadingView />
       ) : status === 'error' ? (

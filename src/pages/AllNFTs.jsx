@@ -2,6 +2,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 import { request, gql } from 'graphql-request'
 import NftListCard from 'components/NftListCard'
+import { Helmet } from 'react-helmet-async'
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient()
@@ -51,6 +52,9 @@ function Tokens() {
 
   return (
     <div>
+      <Helmet>
+        <title>NFT Transfers</title>
+      </Helmet>
       <h1>Tokens</h1>
 
       <div>
