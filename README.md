@@ -10,7 +10,7 @@
 
 #### NewChain Testnet, ChainID: `1007`
 
-[nft.testnet.newton.bio/](https://nft.testnet.newton.bio/)
+[nft.testnet.newton.bio/](https://nft-testnet.newton.bio/)
 
 ## Development
 
