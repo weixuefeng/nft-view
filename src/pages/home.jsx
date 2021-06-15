@@ -2,7 +2,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 import { request, gql } from 'graphql-request'
 import { Link } from 'react-router-dom'
-import { AddressFormat, TokenIdFormat } from 'components/AddressFormat'
+import { AddressFormat, TokenIdFormat, ContractNameFormat, ContractSymbolFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
 import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
 
@@ -210,18 +210,29 @@ function Transfers() {
                     <>
                       {data.map((transfer, index) => (
                         <tr key={index}>
-                          <td title={transfer.token.registry.id}>
-                            {transfer.token.registry.name} ({transfer.token.registry.symbol})
+                          <td
+                            title={
+                              transfer.token.registry.name +
+                              ' ' +
+                              transfer.token.registry.symbol +
+                              ' ' +
+                              transfer.token.registry.id
+                            }
+                          >
+                            {ContractNameFormat(transfer.token.registry.name)} (
+                            {ContractSymbolFormat(transfer.token.registry.symbol)})
                           </td>
                           <td className="mono" title={transfer.token.tokenID}>
                             <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
                               {TokenIdFormat(transfer.token.tokenID)}
                             </Link>
                           </td>
-                          <td className="mono text-right">
+                          <td title={transfer.from.id} className="mono text-right">
                             {AddressFormat(transfer.from.id, 'short')} <ArrowSmRightIcon className="ic" />
                           </td>
-                          <td className="mono">{AddressFormat(transfer.to.id, 'short')}</td>
+                          <td title={transfer.to.id} className="mono">
+                            {AddressFormat(transfer.to.id, 'short')}
+                          </td>
                           <td title={DateTime(transfer.transaction.timestamp * 1000)}>
                             {RelativeTime(transfer.transaction.timestamp * 1000)}
                           </td>

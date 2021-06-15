@@ -36,3 +36,19 @@ export function TokenIdFormat(id = '') {
   }
   return displayId
 }
+
+export function ContractNameFormat(name = '') {
+  let displayName = name
+  if (displayName.length > 12) {
+    return displayName.substr(0, 12) + '...'
+  }
+  return displayName
+}
+
+export function ContractSymbolFormat(symbol = '') {
+  let displaySymbol = symbol
+  if (displaySymbol.length > 6) {
+    return displaySymbol.substr(0, 6) + '...'
+  }
+  return displaySymbol
+}
