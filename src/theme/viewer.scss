@@ -37,14 +37,17 @@
   }
 
   header {
-    @apply p-2;
+    @apply m-2;
     @apply flex flex-row;
+    overflow: hidden;
   }
 
   .collection {
     @apply p-1 flex flex-row rounded-tr-xl rounded-br-xl rounded-tl-3xl rounded-bl-3xl;
     @apply bg-white bg-opacity-50 dark:bg-opacity-20;
     @apply hover:bg-opacity-75 dark:hover:bg-opacity-30 hover:shadow-md;
+    max-width: 50%;
+    overflow: hidden;
     .logo {
       @apply rounded-full bg-white text-xs text-center;
       > svg {
@@ -55,9 +58,9 @@
       @apply flex flex-col ml-1;
     }
     .contract {
-      @apply font-medium text-sm;
+      @apply font-medium text-sm truncate;
       span {
-        @apply text-xs bg-black bg-opacity-5 dark:bg-opacity-25 px-2 py-0.5 rounded-lg font-normal;
+        @apply text-xs bg-black bg-opacity-5 dark:bg-opacity-25 px-2 py-0.5 rounded-lg font-normal truncate;
       }
     }
     .addr {
