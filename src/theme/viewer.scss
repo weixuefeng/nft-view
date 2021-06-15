@@ -188,7 +188,7 @@ section.token-basic {
     @apply uppercase opacity-50;
   }
   dd {
-    @apply w-full truncate;
+    @apply w-full break-all;
   }
 }
 
