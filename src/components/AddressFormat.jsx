@@ -28,3 +28,11 @@ export function AddressFormat(address = '', size = '', convert = 'convert') {
     return displayAddress
   }
 }
+
+export function TokenIdFormat(id = '') {
+  let displayId = id
+  if (displayId.length > 8) {
+    return '···' + displayId.substr(-8)
+  }
+  return displayId
+}

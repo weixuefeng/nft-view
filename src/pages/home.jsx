@@ -2,7 +2,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 import { request, gql } from 'graphql-request'
 import { Link } from 'react-router-dom'
-import { AddressFormat } from 'components/AddressFormat'
+import { AddressFormat, TokenIdFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
 import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
 
@@ -213,9 +213,9 @@ function Transfers() {
                           <td title={transfer.token.registry.id}>
                             {transfer.token.registry.name} ({transfer.token.registry.symbol})
                           </td>
-                          <td className="mono">
+                          <td className="mono" title={transfer.token.tokenID}>
                             <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
-                              {transfer.token.tokenID}
+                              {TokenIdFormat(transfer.token.tokenID)}
                             </Link>
                           </td>
                           <td className="mono text-right">

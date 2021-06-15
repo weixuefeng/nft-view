@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { UriResolver, GetUriProtocol } from 'components/UriResolver'
 import { getMetaData } from 'components/GetMetaData'
-import { AddressFormat } from 'components/AddressFormat'
+import { AddressFormat, TokenIdFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
 import { NewtonCoinIcon } from 'components/icons'
 import { SearchIcon } from '@heroicons/react/outline'
@@ -25,7 +25,7 @@ const NftSingle = props => {
   const bgParam3 = (bgParam0 * parseInt(token.minter)).toString(16)
   const bgParam4 = ((parseInt(CHAIN_ID) + 256) * (token.tokenID + 1)).toString(16)
   let bgStyle = {
-    background:
+    backgroundColor:
       '#' +
       bgParam1.charAt(bgParam1.length - 1) +
       bgParam4.charAt(bgParam4.length - 1) +
@@ -133,7 +133,7 @@ const NftSingle = props => {
                 </div>
                 <div className="info">
                   <div className="contract">
-                    {token.contract.name} <span>{token.tokenID}</span>
+                    {token.contract.name} <span title={token.tokenID}>{TokenIdFormat(token.tokenID)}</span>
                   </div>
                   <div className="addr">
                     <span alt={token.contract.id}>
