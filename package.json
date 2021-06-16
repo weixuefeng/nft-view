@@ -35,6 +35,8 @@
     "start:newchain-dev": "dotenv -e .env.newchain.dev craco start",
     "build:testnet-dev": "dotenv -e .env.testnet.dev craco build",
     "build:newchain-dev": "dotenv -e .env.newchain.dev craco build",
+    "build:newchain-testnet": "dotenv -e .env.newchain-testnet.production craco build",
+    "build:newchain-mainnet": "dotenv -e .env.newchain-mainnet.production craco build",
     "fc": "npx prettier --check ./src",
     "ff": "npx prettier --write ./src",
     "test": "craco test",
