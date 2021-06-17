@@ -6,6 +6,7 @@ import { DateTime } from 'components/DateTime'
 import { NewtonCoinIcon } from 'components/icons'
 import { SearchIcon } from '@heroicons/react/outline'
 import { Helmet } from 'react-helmet-async'
+import Transfer721 from 'modals/Transfer721'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
@@ -218,6 +219,7 @@ const NftSingle = props => {
           </div>
         </div>
       </div>
+      <Transfer721 />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { request, gql } from 'graphql-request'
 import NftSingle from 'components/NftSingle'
 import NftSingleLoadingView from 'components/NftSingleLoadingView'
 import { Helmet } from 'react-helmet-async'
+// import { ReactQueryDevtools } from 'react-query/devtools'
 
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const queryClient = new QueryClient({
@@ -27,10 +28,12 @@ function ViewNFT() {
 export default ViewNFT
 
 function useGetSingle(tokenID = '') {
-  return useQuery('SingleToken', async () => {
-    const { token } = await request(
-      endpoint,
-      gql`
+  return useQuery(
+    'SingleToken',
+    async () => {
+      const { token } = await request(
+        endpoint,
+        gql`
         query {
           token(id:"${tokenID.toString()}") {
             id
@@ -50,14 +53,18 @@ function useGetSingle(tokenID = '') {
           }
         }
       `
-    )
+      )
 
-    if (token === null) {
-      return 'null'
+      if (token === null) {
+        return 'null'
+      }
+
+      return token
+    },
+    {
+      refetchInterval: 1000
     }
-
-    return token
-  })
+  )
 }
 
 function Token() {
@@ -78,12 +85,13 @@ function Token() {
         <NftSingleLoadingView />
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
-      ) : isFetching ? (
-        <NftSingleLoadingView />
       ) : data === null || data.id === undefined ? (
         'does not exist...'
       ) : (
-        <NftSingle token={data} />
+        <>
+          {isFetching ? <div className="view-loading-dot" /> : ''}
+          <NftSingle token={data} />
+        </>
       )}
     </div>
   )

@@ -1,0 +1,135 @@
+// Modals
+.dialog_wrapper {
+  @apply fixed inset-0 overflow-y-auto z-40;
+}
+.modal_wrapper {
+  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-0 sm:p-4;
+  tfoot {
+    @apply block flex;
+  }
+  .trick {
+    @apply hidden sm:inline-block sm:align-middle sm:h-screen;
+  }
+}
+.overlay {
+  @apply fixed inset-0;
+  @apply bg-black bg-opacity-70 dark:bg-black dark:bg-opacity-50;
+}
+
+.modal_card {
+  min-width: 300px;
+  overflow-y: auto;
+  @apply fixed bottom-0 max-h-full sm:max-h-full sm:relative w-full overscroll-y-auto px-4 rounded-t-3xl sm:rounded-b-3xl sm:max-w-md sm:px-6;
+  @apply bg-white border-0 dark:bg-gray-900 dark:border dark:border-gray-800;
+
+  header {
+    @apply text-center mb-6 sticky top-0 -mx-4 sm:-mx-6 border-b;
+    @apply dark:border-gray-800;
+    @apply bg-white dark:bg-gray-900;
+    h3 {
+      @apply text-lg sm:text-xl leading-6 font-medium pt-6 pb-4;
+      @apply dark:text-white;
+    }
+    button.close {
+      @apply absolute right-4 top-4 p-2 rounded-lg text-xs sm:text-sm;
+      @apply bg-white hover:bg-gray-100;
+      @apply dark:bg-gray-900 dark:hover:bg-gray-800;
+      svg {
+        @apply w-6 h-6 text-gray-400;
+      }
+    }
+  }
+  main {
+    @apply mt-2 sm:mt-3 mb-4 w-full;
+
+    p {
+      @apply mt-1 font-normal;
+      @apply text-gray-800 dark:text-gray-400;
+    }
+    .nft_card {
+      @apply w-full flex items-center my-4 p-2 space-x-2 rounded-lg;
+      @apply bg-gray-100 dark:bg-gray-800;
+      img {
+        @apply w-12 h-12 bg-gray-50 rounded-md flex-shrink-0;
+      }
+      div {
+        @apply flex-1 truncate;
+        h4 {
+          @apply text-base font-medium truncate;
+          @apply text-gray-700 dark:text-gray-300;
+        }
+      }
+    }
+  }
+  footer {
+    @apply mt-3 mb-6 justify-end;
+  }
+}
+
+// Buttons
+
+button:disabled {
+  @apply bg-gray-200 text-gray-500;
+}
+
+button.primary {
+  // Global
+  @apply transition transition-all duration-300;
+  // Primary
+  @apply inline-flex justify-center w-full rounded-2xl px-4 py-3 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2  uppercase mt-3;
+  @apply border border-transparent;
+  // Green
+  @apply bg-green-500 text-white hover:bg-green-700 focus:ring-green-500;
+  &.yellow {
+    @apply text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-500;
+  }
+  &.blue {
+    @apply text-white bg-blue-500 hover:bg-blue-600 focus:ring-blue-500;
+  }
+  &.red {
+    @apply text-white bg-red-500 hover:bg-red-600 focus:ring-red-500;
+  }
+  // Disabled
+
+  // Small
+  &.small {
+    @apply px-3 py-2 text-sm font-medium capitalize mt-3 rounded-xl;
+  }
+  // Tiny
+  &.tiny {
+    @apply px-2 py-1 text-xs font-medium capitalize mt-2 rounded-md mx-2;
+  }
+  // Auto Size, Unset Full Width
+  &.auto {
+    @apply w-auto mx-2;
+  }
+  &:disabled {
+    @apply bg-gray-200 text-gray-500;
+  }
+}
+
+.group {
+  label {
+    @apply block text-sm font-medium mt-1;
+    @apply text-gray-700 dark:text-gray-300;
+    @apply uppercase;
+  }
+
+  input {
+    @apply bg-gray-100 focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-md sm:text-sm border border-gray-200;
+    @apply dark:bg-gray-700 dark:border-gray-700;
+    @apply p-2 text-base;
+  }
+
+  .for_input {
+    @apply inline-flex items-center text-left px-2 text-gray-500 text-sm;
+  }
+}
+
+.btn-transfer {
+  @apply fixed right-6 bottom-6 bg-green-500 hover:bg-green-600 p-2 rounded-full;
+  @apply transition duration-150 ease-in-out;
+  svg {
+    @apply text-white w-6 h-6;
+  }
+}

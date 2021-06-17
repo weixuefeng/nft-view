@@ -5,6 +5,7 @@
 @import 'utils';
 @import 'viewer';
 @import 'nft-list';
+@import 'modal';
 
 .home-table {
   @apply relative;
@@ -68,4 +69,9 @@ table {
     @apply absolute top-2 left-2 w-1 h-1 bg-green-500 rounded-full animate-ping inline-block;
     content: '';
   }
+}
+
+.view-loading-dot {
+  @apply fixed top-2 left-2 w-1 h-1 bg-green-500 rounded-full animate-ping z-50;
+  content: '';
 }
