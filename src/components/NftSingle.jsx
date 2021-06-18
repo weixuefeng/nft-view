@@ -6,6 +6,9 @@ import { DateTime } from 'components/DateTime'
 import { NewtonCoinIcon } from 'components/icons'
 import { SearchIcon } from '@heroicons/react/outline'
 import { Helmet } from 'react-helmet-async'
+import { injected } from 'connectors'
+import { useWeb3React } from '@web3-react/core'
+
 import Transfer721 from 'modals/Transfer721'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
@@ -118,6 +121,20 @@ const NftSingle = props => {
     getTokenMetaData()
   }, [token])
 
+  const web3Context = useWeb3React()
+  const { account, chainId, activate } = web3Context
+
+  const connnectWallet = () => {
+    activate(injected, error => {
+      window.alert(error)
+    })
+  }
+
+  // const disconnectWallet = () => {
+  //   deactivate()
+  //   // window.alert('disconnected')
+  // }
+
   return (
     <>
       <Helmet>
@@ -219,7 +236,30 @@ const NftSingle = props => {
           </div>
         </div>
       </div>
-      <Transfer721 />
+      <div className="flex-auto flex space-x-3">
+        {
+          !!(typeof window.ethereum !== 'undefined' || typeof window.web3 !== 'undefined') ? (
+            !!account ? (
+              ''
+            ) : (
+              // <button onClick={disconnectWallet} type="button" className="primary red">
+              //   Disconnect<span hidden>{AddressFormat(account, 'short')}</span>
+              // </button>
+              <button onClick={connnectWallet} type="button" className="connect-wallet">
+                Connect Wallet
+              </button>
+            )
+          ) : (
+            ''
+          )
+          // const provider = window['ethereum'] || window.web3.currentProvider
+        }
+      </div>
+      {!!(account && account.toLowerCase() === token.owner.id && CHAIN_ID === chainId.toString()) ? (
+        <Transfer721 contractID={token.contract.id} tokenID={token.tokenID} />
+      ) : (
+        ''
+      )}
     </>
   )
 }

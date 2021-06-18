@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom'
 import './theme/style.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
+import { NetworkContextName } from './constant/constant'
+import getLibrary from 'helpers/getLibrary'
+
+const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
+
+// if ('ethereum' in window) {
+//   ;(window.ethereum).autoRefreshOnNetworkChange = false
+// }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Web3ReactProvider getLibrary={getLibrary}>
+    <Web3ProviderNetwork getLibrary={getLibrary}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Web3ProviderNetwork>
+  </Web3ReactProvider>,
   document.getElementById('root')
 )
 

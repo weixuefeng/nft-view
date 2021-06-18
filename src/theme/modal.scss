@@ -127,9 +127,16 @@ button.primary {
 }
 
 .btn-transfer {
-  @apply fixed right-6 bottom-6 bg-green-500 hover:bg-green-600 p-2 rounded-full;
+  @apply fixed right-6 bottom-6 bg-black z-40 hover:bg-gray-900 p-2 rounded-full border border-gray-500 shadow;
   @apply transition duration-150 ease-in-out;
   svg {
-    @apply text-white w-6 h-6;
+    @apply text-white w-6 h-6 inline-block;
   }
+  &:hover svg {
+    @apply animate-bounce;
+  }
+}
+
+button.connect-wallet {
+  @apply fixed right-6 bottom-6 bg-black hover:bg-gray-900 p-2 px-4 rounded-full border border-gray-500 shadow;
 }
