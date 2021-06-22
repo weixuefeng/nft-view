@@ -215,7 +215,7 @@ const NftSingle = props => {
                       <dd className="mono">{token.mintBlock}</dd>
                     </dl>
                   </div>
-                  <dl>
+                  <dl hidden={!!(!token.tokenURI || token.tokenURI === '')}>
                     <dt>Token URI</dt>
                     <dd className="mono">{token.tokenURI}</dd>
                   </dl>
