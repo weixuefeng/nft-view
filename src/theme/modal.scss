@@ -3,7 +3,7 @@
   @apply fixed inset-0 overflow-y-auto z-40;
 }
 .modal_wrapper {
-  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-0 sm:p-4;
+  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-0;
   tfoot {
     @apply block flex;
   }
@@ -23,7 +23,7 @@
   @apply bg-white border-0 dark:bg-gray-900 dark:border dark:border-gray-800;
 
   header {
-    @apply text-center mb-6 sticky top-0 -mx-4 sm:-mx-6 border-b;
+    @apply text-center sticky top-0 -mx-4 sm:-mx-6 border-b;
     @apply dark:border-gray-800;
     @apply bg-white dark:bg-gray-900;
     h3 {
@@ -40,7 +40,7 @@
     }
   }
   main {
-    @apply mt-2 sm:mt-3 mb-4 w-full;
+    @apply mb-4 w-full;
 
     p {
       @apply mt-1 font-normal;

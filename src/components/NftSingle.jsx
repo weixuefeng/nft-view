@@ -10,6 +10,7 @@ import { injected } from 'connectors'
 import { useWeb3React } from '@web3-react/core'
 
 import Transfer721 from 'modals/Transfer721'
+import ViewTransfers from 'modals/ViewTransfers'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
@@ -166,7 +167,7 @@ const NftSingle = props => {
 
             <section className="token-basic">
               <dl>
-                <dt>Created On</dt>
+                <dt>Creation Time</dt>
                 <dd>{DateTime(token.mintTime * 1000)}</dd>
               </dl>
               <dl>
@@ -221,19 +222,18 @@ const NftSingle = props => {
                 </div>
               </details>
             </section>
-
-            <footer>
-              <div>
-                <a
-                  href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID}
-                  className="button"
-                >
-                  <SearchIcon />
-                  <p>View In Explorer</p>
-                </a>
-              </div>
-            </footer>
           </div>
+        </div>
+      </div>
+      <div id="viewer-nav">
+        <div>
+          <a href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID} className="button">
+            <SearchIcon />
+            <p>View In Explorer</p>
+          </a>
+        </div>
+        <div>
+          <ViewTransfers tokenID={token.id} />
         </div>
       </div>
       <div className="flex-auto flex space-x-3">
