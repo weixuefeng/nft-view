@@ -67,7 +67,12 @@ function newAddress2HexAddress(newAddress) {
   }
   newAddress = newAddress.trim()
   if (typeof newAddress === 'string' && newAddress.startsWith(PREFIX) && newAddress.length === 39) {
-    return '0x' + base58check.decode(newAddress.slice(3), 'hex').data.slice(4)
+    try {
+      return '0x' + base58check.decode(newAddress.slice(3), 'hex').data.slice(4)
+    } catch (e) {
+      // console.error(e)
+      return ''
+    }
   } else {
     return newAddress
   }

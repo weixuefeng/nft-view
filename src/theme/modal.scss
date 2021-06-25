@@ -3,7 +3,7 @@
   @apply fixed inset-0 overflow-y-auto z-40;
 }
 .modal_wrapper {
-  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-0;
+  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none;
   tfoot {
     @apply block flex;
   }
@@ -13,21 +13,24 @@
 }
 .overlay {
   @apply fixed inset-0;
-  @apply bg-black bg-opacity-70 dark:bg-black dark:bg-opacity-50;
+  @apply bg-black bg-opacity-70 dark:bg-black dark:bg-opacity-75;
 }
 
 .modal_card {
   min-width: 300px;
   overflow-y: auto;
-  @apply fixed bottom-0 max-h-full sm:max-h-full sm:relative w-full overscroll-y-auto px-4 rounded-t-3xl sm:rounded-b-3xl sm:max-w-md sm:px-6;
+  @apply fixed bottom-0 w-full rounded-t-3xl px-4 pb-4;
+  @apply sm:relative sm:rounded-b-3xl sm:max-w-md sm:pb-0;
   @apply bg-white border-0 dark:bg-gray-900 dark:border dark:border-gray-800;
+  &.nft-transfers {
+    height: 90%;
+  }
 
   header {
-    @apply text-center sticky top-0 -mx-4 sm:-mx-6 border-b;
-    @apply dark:border-gray-800;
+    @apply relative z-10 text-left sticky top-0 -mx-4;
     @apply bg-white dark:bg-gray-900;
     h3 {
-      @apply text-lg sm:text-xl leading-6 font-medium pt-6 pb-4;
+      @apply text-lg sm:text-xl leading-6 font-medium pt-6 pb-4 pl-4 sm:pl-6;
       @apply dark:text-white;
     }
     button.close {
@@ -116,8 +119,8 @@ button.primary {
   }
 
   input {
-    @apply bg-gray-100 focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-md sm:text-sm border border-gray-200;
-    @apply dark:bg-gray-700 dark:border-gray-700;
+    @apply bg-gray-200 flex-1 w-full rounded-md sm:text-sm focus:outline-none focus:ring-1 focus:ring-green-500;
+    @apply dark:bg-gray-700;
     @apply p-2 text-base;
   }
 
@@ -127,16 +130,43 @@ button.primary {
 }
 
 .btn-transfer {
-  @apply fixed right-6 bottom-6 text-white bg-black z-40 hover:bg-gray-800 p-2 rounded-full border z-30 border-gray-500 shadow;
+  @apply fixed right-6 bottom-6 text-white bg-black z-40 hover:bg-gray-800 p-2 rounded-full border z-30 border-gray-500 shadow-xl px-4;
   @apply transition duration-150 ease-in-out;
   svg {
-    @apply text-white w-6 h-6 inline-block;
-  }
-  &:hover svg {
-    @apply animate-bounce;
+    @apply text-white w-6 h-6 inline-block -mt-1;
   }
 }
 
 button.connect-wallet {
   @apply fixed right-6 bottom-6 text-white bg-black hover:bg-gray-800 p-2 px-4 rounded-full border z-30 border-gray-500 shadow;
+}
+
+.qr-reader-frame {
+  @apply px-10;
+  video {
+    @apply rounded-3xl bg-gray-800;
+  }
+  > section > div {
+    @apply rounded-3xl;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    box-sizing: border-box;
+    border: none !important;
+    box-shadow: none !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    &:after {
+      @apply rounded-3xl border border-white scale-125;
+      border-width: 16px;
+      box-sizing: border-box;
+      border-color: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: '　';
+    }
+  }
 }

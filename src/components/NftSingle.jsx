@@ -4,10 +4,11 @@ import { getMetaData } from 'components/GetMetaData'
 import { AddressFormat, TokenIdFormat, ContractNameFormat } from 'components/AddressFormat'
 import { DateTime } from 'components/DateTime'
 import { NewtonCoinIcon } from 'components/icons'
-import { SearchIcon } from '@heroicons/react/outline'
+import { SearchIcon, ShareIcon } from '@heroicons/react/outline'
 import { Helmet } from 'react-helmet-async'
 import { injected } from 'connectors'
 import { useWeb3React } from '@web3-react/core'
+import { hasShare, hasVibrate } from 'utils/hasHTML5API'
 
 import Transfer721 from 'modals/Transfer721'
 import ViewTransfers from 'modals/ViewTransfers'
@@ -38,6 +39,21 @@ const NftSingle = props => {
       token.contract.id.charAt(token.contract.id.length - 2) +
       bgParam3.charAt(13) +
       token.minter.charAt(token.minter.length - 2)
+  }
+
+  function share() {
+    if (!('share' in navigator)) {
+      alert('Web Share API not supported.')
+      return
+    }
+
+    navigator.share({
+      title: pageTitle,
+      text: pageTitle,
+      url: window.location.href
+    })
+    // .then(() => console.log('Successful share'))
+    // .catch(error => console.log('Error sharing:', error))
   }
 
   const [bgImgCover, setBgImgCover] = useState(bgStyle)
@@ -135,7 +151,6 @@ const NftSingle = props => {
   //   deactivate()
   //   // window.alert('disconnected')
   // }
-
   return (
     <>
       <Helmet>
@@ -189,7 +204,7 @@ const NftSingle = props => {
 
             <section className="chain-data">
               <details>
-                <summary>Chain Info</summary>
+                <summary onClick={() => hasVibrate() && navigator.vibrate(75)}>Chain Info</summary>
                 <div>
                   <dl>
                     <dt>Contract Address</dt>
@@ -227,13 +242,22 @@ const NftSingle = props => {
       </div>
       <div id="viewer-nav">
         <div>
-          <a href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID} className="button">
+          <a
+            href={EXPLORER_BASE_URL + 'tokens/' + token.contract.id + '/instance/' + token.tokenID}
+            className="button"
+            target="_blank"
+            rel="noreferrer"
+          >
             <SearchIcon />
-            <p>View In Explorer</p>
           </a>
         </div>
         <div>
           <ViewTransfers tokenID={token.id} />
+        </div>
+        <div hidden={!hasShare()}>
+          <button onClick={() => share()} className="button">
+            <ShareIcon />
+          </button>
         </div>
       </div>
       <div className="flex-auto flex space-x-3">
@@ -255,10 +279,8 @@ const NftSingle = props => {
           // const provider = window['ethereum'] || window.web3.currentProvider
         }
       </div>
-      {!!(account && account.toLowerCase() === token.owner.id && CHAIN_ID === chainId.toString()) ? (
+      {!!(account && account.toLowerCase() === token.owner.id && CHAIN_ID === chainId.toString()) && (
         <Transfer721 contractID={token.contract.id} tokenID={token.tokenID} />
-      ) : (
-        ''
       )}
     </>
   )

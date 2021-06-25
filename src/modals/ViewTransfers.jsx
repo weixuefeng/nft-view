@@ -1,13 +1,13 @@
 import { useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon, SwitchHorizontalIcon } from '@heroicons/react/solid'
+import { XIcon } from '@heroicons/react/solid'
 import { useWeb3React } from '@web3-react/core'
 import { AddressFormat } from 'components/AddressFormat'
-import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
-
+import { ExternalLinkIcon, ArrowSmRightIcon, SwitchHorizontalIcon } from '@heroicons/react/outline'
 import { DateTime, RelativeTime } from 'components/DateTime'
 import { useQuery } from 'react-query'
 import { request, gql } from 'graphql-request'
+import { hasVibrate } from 'utils/hasHTML5API'
 
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const endpoint2 = process.env.REACT_APP_API_ENDPOINT_2
@@ -110,14 +110,17 @@ const ViewTransfers = props => {
 
   function closeModal() {
     setShowModal(false)
+    hasVibrate() && navigator.vibrate(75)
   }
 
   return (
     <>
-      <a onClick={() => setShowModal(true)} className="button" href="#/">
+      <button
+        onClick={() => (hasVibrate() ? navigator.vibrate(75) && setShowModal(true) : setShowModal(true))}
+        className="button"
+      >
         <SwitchHorizontalIcon />
-        <p>View Transfers</p>
-      </a>
+      </button>
       <Transition.Root show={showModal} as={Fragment}>
         <Dialog as="div" static className="dialog_wrapper" open={showModal} onClose={closeModal}>
           <div className="modal_wrapper">
@@ -126,35 +129,35 @@ const ViewTransfers = props => {
               enter="ease-out duration-200"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="ease-in duration-200 delay-200"
+              leave="ease-in duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
               <Dialog.Overlay className="overlay" />
             </Transition.Child>
 
-            <span className="trick" aria-hidden="true">
-              　
-            </span>
+            <span className="trick" aria-hidden="true" />
 
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300 delay-200"
               enterFrom="translate-y-full opacity-0"
               enterTo="translate-y-0 opacity-100"
-              leave="ease-in duration-200"
+              leave="ease-in"
               leaveFrom="translate-y-0"
               leaveTo="translate-y-full"
             >
-              <div className="transform transition-all modal_card p-0">
+              <div className="transform transition-all modal_card nft-transfers">
                 <header>
-                  <h3>Transfers</h3>
+                  <h3>
+                    <SwitchHorizontalIcon className="inline-block text-black dark:text-white w-6 h-6 -mt-1" /> Transfers
+                  </h3>
                   <button className="close" onClick={closeModal}>
                     <XIcon />
                   </button>
                 </header>
 
-                <main className="nft-transfers">
+                <main>
                   <Transfers tokenID={tokenID} />
                 </main>
                 <div className="tfoot"></div>
