@@ -64,16 +64,28 @@ const NftSingle = props => {
       return
     }
 
+    function parseBase64Data(url) {
+      let prefix = 'data:application/json;base64,'
+      if (url.startsWith(prefix)) {
+        let data = url.split(prefix)[1]
+        let res = JSON.parse(atob(data))
+        return res
+      }
+    }
+
     const getTokenMetaData = async () => {
-      if (GetUriProtocol(token.tokenURI) === 'http') {
+      let tokenMetaData = {}
+      let protocol = GetUriProtocol(token.tokenURI)
+      if (protocol === 'http') {
         setTokenName('Blocked From Accessing Insecure HTTP NFT Content')
         setPageTitle(token.contract.id + '-' + token.tokenID)
         setLayoutType('layout-raw-address')
         return
+      } else if (protocol === 'base64') {
+        tokenMetaData = parseBase64Data(token.tokenURI)
+      } else {
+        tokenMetaData = await getMetaData(UriResolver(token.tokenURI))
       }
-
-      const tokenMetaData = await getMetaData(UriResolver(token.tokenURI))
-
       if (!tokenMetaData.name || tokenMetaData.name === '') {
         setTokenName('')
         setPageTitle(token.contract.name + ': #' + token.tokenID)
@@ -95,22 +107,33 @@ const NftSingle = props => {
         )
         layoutNumber = layoutNumber + 2
       }
-
       if (!tokenMetaData.image || tokenMetaData.image === '') {
         setTokenImage('')
       } else {
-        const imgUrl = UriResolver(tokenMetaData.image)
-        setTokenImage(
-          <div className="cover">
-            <img src={imgUrl} alt="" />
-          </div>
-        )
-
-        setBgImgCover({
-          backgroundImage: `url(${imgUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        })
+        if (protocol === 'base64') {
+          setTokenImage(
+            <div className="cover">
+              <img src={tokenMetaData.image} alt="" />
+            </div>
+          )
+          setBgImgCover({
+            backgroundSize: 'cover',
+            backgroundImage: `url(${tokenMetaData.image})`,
+            backgroundPosition: 'center'
+          })
+        } else {
+          const imgUrl = UriResolver(tokenMetaData.image)
+          setTokenImage(
+            <div className="cover">
+              <img src={imgUrl} alt="" />
+            </div>
+          )
+          setBgImgCover({
+            backgroundImage: `url(${imgUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          })
+        }
 
         layoutNumber = layoutNumber + 4
       }

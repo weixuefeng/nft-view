@@ -59,6 +59,9 @@ export function GetUriProtocol(uri = '') {
   if (uri.substring(0, 3) === 'ar:' || uri.substring(0, 8) === 'arweave:') {
     return 'ar'
   }
+  if (uri.startsWith('data:application/json;base64,')) {
+    return 'base64'
+  }
   return 'unknown'
 }
 
