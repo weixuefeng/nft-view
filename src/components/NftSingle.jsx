@@ -68,7 +68,7 @@ const NftSingle = props => {
       let prefix = 'data:application/json;base64,'
       if (url.startsWith(prefix)) {
         let data = url.split(prefix)[1]
-        let res = JSON.parse(atob(data))
+        let res = JSON.parse(decodeURIComponent(escape(atob(data))))
         return res
       }
     }
@@ -110,7 +110,8 @@ const NftSingle = props => {
       if (!tokenMetaData.image || tokenMetaData.image === '') {
         setTokenImage('')
       } else {
-        if (protocol === 'base64') {
+        let imageProtocol = GetUriProtocol(tokenMetaData.image)
+        if (imageProtocol === 'base64') {
           setTokenImage(
             <div className="cover">
               <img src={tokenMetaData.image} alt="" />
