@@ -25,12 +25,26 @@ function App() {
             <Helmet>
               <title>404 - NFT Viewer</title>
             </Helmet>
-            <p>404</p>
+            <Page404 />
           </Route>
         </Switch>
       </Router>
     </HelmetProvider>
   )
 }
+
+function Page404() {
+  return (
+    <div>
+      <div className="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl">
+          <span className="block">404</span>
+          <span className="block">NOT FOUND</span>
+        </h2>
+      </div>
+    </div>
+  )
+}
+
 
 export default App
