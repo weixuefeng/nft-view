@@ -12,6 +12,7 @@ const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const endpoint2 = process.env.REACT_APP_API_ENDPOINT_2
 const queryClient = new QueryClient()
+const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 function Home() {
   return (
@@ -252,9 +253,13 @@ function Transfers() {
                             {ContractSymbolFormat(transfer.token.registry.symbol)})
                           </td>
                           <td className="mono" title={transfer.token.tokenID}>
-                            <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
-                              {TokenIdFormat(transfer.token.tokenID)}
-                            </Link>
+                            {transfer.to.id === zeroAddress ? (
+                              TokenIdFormat(transfer.token.tokenID)
+                            ) : (
+                              <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
+                                {TokenIdFormat(transfer.token.tokenID)}
+                              </Link>
+                            )}
                           </td>
                           <td title={transfer.from.id} className="mono text-right">
                             {AddressFormat(transfer.from.id, 'short')} <ArrowSmRightIcon className="ic" />
