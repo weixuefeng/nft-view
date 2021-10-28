@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { AddressFormat, TokenIdFormat, ContractNameFormat, ContractSymbolFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
 import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
+import NumberFormat from 'react-number-format'
 
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
@@ -146,19 +147,47 @@ function Stats() {
                   <dl>
                     <div>
                       <dt>TOKENS</dt>
-                      <dd>{stats.numTokens}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTokens}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>CONTRACTS</dt>
-                      <dd>{stats.numTokenContracts}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTokenContracts}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>HOLDERS</dt>
-                      <dd>{stats.numOwners}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numOwners}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>TRANSFERS</dt>
-                      <dd>{stats.numTransfers}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTransfers}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                   </dl>
                 </div>
