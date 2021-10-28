@@ -71,7 +71,7 @@ function useGetTransfers() {
         endpoint2,
         gql`
           query {
-            transfers(orderBy: timestamp, orderDirection: desc, first: 25) {
+            transfers(orderBy: timestamp, orderDirection: desc, first: 300) {
               id
               from {
                 id
@@ -99,7 +99,7 @@ function useGetTransfers() {
       return transfers
     },
     {
-      refetchInterval: 1000
+      refetchInterval: 3000
     }
   )
 }
@@ -181,7 +181,7 @@ function Transfers() {
           Transfers {isFetching ? <div className="loading-dot" /> : ''}
         </h3>
       </header>
-      <h4>Latest Transfers</h4>
+      <h4>Latest 300 Transfers</h4>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
