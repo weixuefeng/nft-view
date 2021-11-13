@@ -86,13 +86,25 @@ function Token() {
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : data === null || data.id === undefined ? (
-        'does not exist...'
+        <ItemNotExist />
       ) : (
         <>
           {isFetching ? <div className="view-loading-dot" /> : ''}
           <NftSingle token={data} />
         </>
       )}
+    </div>
+  )
+}
+
+function ItemNotExist() {
+  return (
+    <div>
+      <div className="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl">
+          <span className="block">TOKEN NOT EXIST</span>
+        </h2>
+      </div>
     </div>
   )
 }

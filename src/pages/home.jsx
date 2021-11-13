@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom'
 import { AddressFormat, TokenIdFormat, ContractNameFormat, ContractSymbolFormat } from 'components/AddressFormat'
 import { RelativeTime, DateTime } from 'components/DateTime'
 import { ExternalLinkIcon, ArrowSmRightIcon } from '@heroicons/react/outline'
+import NumberFormat from 'react-number-format'
 
 const CHAIN_ID = process.env.REACT_APP_NETWORK_CHAINID
 const EXPLORER_BASE_URL = process.env.REACT_APP_EXPLORER_URL
 const endpoint = process.env.REACT_APP_API_ENDPOINT
 const endpoint2 = process.env.REACT_APP_API_ENDPOINT_2
 const queryClient = new QueryClient()
+const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 function Home() {
   return (
@@ -71,7 +73,7 @@ function useGetTransfers() {
         endpoint2,
         gql`
           query {
-            transfers(orderBy: timestamp, orderDirection: desc, first: 25) {
+            transfers(orderBy: timestamp, orderDirection: desc, first: 300) {
               id
               from {
                 id
@@ -99,7 +101,7 @@ function useGetTransfers() {
       return transfers
     },
     {
-      refetchInterval: 1000
+      refetchInterval: 3000
     }
   )
 }
@@ -146,19 +148,47 @@ function Stats() {
                   <dl>
                     <div>
                       <dt>TOKENS</dt>
-                      <dd>{stats.numTokens}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTokens}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>CONTRACTS</dt>
-                      <dd>{stats.numTokenContracts}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTokenContracts}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>HOLDERS</dt>
-                      <dd>{stats.numOwners}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numOwners}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                     <div>
                       <dt>TRANSFERS</dt>
-                      <dd>{stats.numTransfers}</dd>
+                      <dd>
+                        <NumberFormat
+                          value={stats.numTransfers}
+                          displayType={'text'}
+                          thousandSeparator={true}
+                          renderText={value => <>{value}</>}
+                        />
+                      </dd>
                     </div>
                   </dl>
                 </div>
@@ -181,7 +211,7 @@ function Transfers() {
           Transfers {isFetching ? <div className="loading-dot" /> : ''}
         </h3>
       </header>
-      <h4>Latest Transfers</h4>
+      <h4>Latest 300 Transfers</h4>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -223,9 +253,13 @@ function Transfers() {
                             {ContractSymbolFormat(transfer.token.registry.symbol)})
                           </td>
                           <td className="mono" title={transfer.token.tokenID}>
-                            <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
-                              {TokenIdFormat(transfer.token.tokenID)}
-                            </Link>
+                            {transfer.to.id === zeroAddress ? (
+                              TokenIdFormat(transfer.token.tokenID)
+                            ) : (
+                              <Link to={'/view/' + transfer.token.registry.id + '/' + transfer.token.tokenID}>
+                                {TokenIdFormat(transfer.token.tokenID)}
+                              </Link>
+                            )}
                           </td>
                           <td title={transfer.from.id} className="mono text-right">
                             {AddressFormat(transfer.from.id, 'short')} <ArrowSmRightIcon className="ic" />
