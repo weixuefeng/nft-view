@@ -77,8 +77,7 @@ const Transfer721 = props => {
       address = newAddress2HexAddress(targetAddress)
     }
     // console.log('addr:' + address)
-
-    erc721Contract.transferFrom(account, getAddress(address), parseInt(props.tokenID))
+    erc721Contract.transferFrom(account, getAddress(address), props.tokenID)
     // .then(res => {
     //   console.log(res)
     // })

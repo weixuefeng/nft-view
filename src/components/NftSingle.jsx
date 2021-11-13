@@ -165,16 +165,13 @@ const NftSingle = props => {
   const web3Context = useWeb3React()
   const { account, chainId, activate } = web3Context
 
-  const connnectWallet = () => {
+  function connectWallet () {
     activate(injected, error => {
       window.alert(error)
     })
   }
 
-  // const disconnectWallet = () => {
-  //   deactivate()
-  //   // window.alert('disconnected')
-  // }
+
   return (
     <>
       <Helmet>
@@ -292,8 +289,8 @@ const NftSingle = props => {
             ) : (
               // <button onClick={disconnectWallet} type="button" className="primary red">
               //   Disconnect<span hidden>{AddressFormat(account, 'short')}</span>
-              // </button>
-              <button onClick={connnectWallet} type="button" className="connect-wallet">
+              // </button>s
+              <button onClick={connectWallet} type="button" className="connect-wallet">
                 Connect Wallet
               </button>
             )
