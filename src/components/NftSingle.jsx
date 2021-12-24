@@ -139,6 +139,17 @@ const NftSingle = props => {
         layoutNumber = layoutNumber + 4
       }
 
+      if(tokenMetaData.animation_uri) {
+        let width = 400;
+        let height = width * 16 / 9
+        let animationUri = UriResolver(tokenMetaData.animation_uri)
+        setTokenImage(
+          <div className="cover justify-center items-center">
+            <iframe title={tokenMetaData.animation_uri} src={animationUri} className={"rounded"} width={`${width}px`} height={`${height}px`}/>
+          </div>
+        )
+      }
+
       switch (layoutNumber) {
         case 0:
           setLayoutType('layout-raw-address')
