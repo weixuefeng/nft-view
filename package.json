@@ -38,7 +38,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "dotenv -e .env.testnet.dev craco start",
+    "start": "dotenv -e .env.devnet.dev craco start",
     "start:newchain-dev": "dotenv -e .env.newchain.dev craco start",
     "build:testnet-dev": "dotenv -e .env.testnet.dev craco build",
     "build:newchain-dev": "dotenv -e .env.newchain.dev craco build",
